@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uuid
 
+import extract
 import pricing
 import stubs
 
@@ -55,7 +56,6 @@ def health():
 @app.post("/intake")
 def intake(req: IntakeRequest):
     try:
-        import extract
         parsed = extract.parse(req.text)
     except Exception:
         return stubs.intake(req.session_id)
@@ -63,6 +63,8 @@ def intake(req: IntakeRequest):
     s = session(req.session_id)
     s["facts"] = parsed["facts"]
     s["deductible"] = parsed["user_deductible"]
+    s["coverage"] = parsed["coverage"]
+    s["procedure"] = parsed["procedure_name"]
     return {"session_id": req.session_id, **parsed}
 
 

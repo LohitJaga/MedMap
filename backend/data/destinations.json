@@ -6,7 +6,8 @@
     "lodging_cost_recovery_stay": 900,
     "risk_multiplier": 0.022,
     "visa_note": "No visa required for US citizens under 90 days",
-    "why_patients_go": "JCI network, short flight, large English-speaking care staff"
+    "why_patients_go": "JCI network, short flight, large English-speaking care staff",
+    "iata": "SJO"
   },
   {
     "country": "India",
@@ -15,7 +16,8 @@
     "lodging_cost_recovery_stay": 650,
     "risk_multiplier": 0.028,
     "visa_note": "Medical visa required, typically 5-10 business days",
-    "why_patients_go": "Lowest procedure cost worldwide, high-volume cardiac programs"
+    "why_patients_go": "Lowest procedure cost worldwide, high-volume cardiac programs",
+    "iata": "MAA"
   },
   {
     "country": "Mexico",
@@ -24,16 +26,18 @@
     "lodging_cost_recovery_stay": 850,
     "risk_multiplier": 0.025,
     "visa_note": "No visa required for US citizens",
-    "why_patients_go": "Shortest travel time, established US patient corridors"
+    "why_patients_go": "Shortest travel time, established US patient corridors",
+    "iata": "TIJ"
   },
   {
     "country": "Thailand",
     "flight_hours_from_jfk": 19.0,
     "flight_cost": 1300,
     "lodging_cost_recovery_stay": 1100,
-    "risk_multiplier": 0.020,
+    "risk_multiplier": 0.02,
     "visa_note": "Visa exemption for US citizens under 30 days; medical extension available",
-    "why_patients_go": "Highest-rated international patient programs, full recovery packages"
+    "why_patients_go": "Highest-rated international patient programs, full recovery packages",
+    "iata": "BKK"
   },
   {
     "country": "Turkey",
@@ -42,7 +46,8 @@
     "lodging_cost_recovery_stay": 800,
     "risk_multiplier": 0.024,
     "visa_note": "e-Visa required, issued online in under 24 hours",
-    "why_patients_go": "Strong orthopedic programs, mid-range flight, low lodging cost"
+    "why_patients_go": "Strong orthopedic programs, mid-range flight, low lodging cost",
+    "iata": "IST"
   },
   {
     "country": "Colombia",
@@ -51,6 +56,7 @@
     "lodging_cost_recovery_stay": 700,
     "risk_multiplier": 0.026,
     "visa_note": "No visa required for US citizens under 90 days",
-    "why_patients_go": "Short flight, low cost of recovery stay, growing cardiac programs"
+    "why_patients_go": "Short flight, low cost of recovery stay, growing cardiac programs",
+    "iata": "BOG"
   }
 ]

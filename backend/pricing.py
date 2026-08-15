@@ -2,6 +2,8 @@ import json
 import random
 from pathlib import Path
 
+import travel
+
 DATA = Path(__file__).parent / "data"
 
 SAFETY_THRESHOLD = 8.6
@@ -83,10 +85,27 @@ def patient_risk_factor(facts):
     return round(factor, 3), drivers
 
 
-def warranty_cost(procedure, p_comp):
-    """Actuarial: expected covered loss plus a 30% load. Not a made-up multiplier."""
-    loss = REVISION_COST.get(procedure, 75000)
-    return round(p_comp * min(loss, POLICY_LIMIT) * (1 + LOAD_FACTOR), 2)
+EXTRA_NIGHTS_ON_COMPLICATION = 14
+FLIGHT_CHANGE_FEE = 450.0
+
+
+def disruption_cost(nightly_rate, flight_cost):
+    """A complication abroad isn't only medical. You miss the flight home and the
+    recovery stay extends. Priced off the same live hotel and flight numbers."""
+    extra_lodging = EXTRA_NIGHTS_ON_COMPLICATION * nightly_rate
+    rebooking = FLIGHT_CHANGE_FEE + 0.4 * flight_cost
+    return round(extra_lodging + rebooking, 2)
+
+
+def warranty_cost(procedure, p_comp, disruption=0.0):
+    """Actuarial: expected covered loss plus a 30% load.
+
+    Covered loss = medical revision + trip disruption, because both are caused by
+    the same event. Not a made-up multiplier.
+    """
+    medical = REVISION_COST.get(procedure, 75000)
+    covered = min(medical + disruption, POLICY_LIMIT)
+    return round(p_comp * covered * (1 + LOAD_FACTOR), 2)
 
 
 def domestic_options(procedure, deductible, coverage="standard", facts=(), state=None, limit=40):
@@ -173,9 +192,12 @@ def price_spread(procedure):
     }
 
 
-def cost_distribution(fixed, premium, p_comp, procedure, seed=7):
-    """Total cost is a random variable. The procedure is certain; the complication isn't."""
-    mean_loss = REVISION_COST.get(procedure, 75000)
+def cost_distribution(fixed, premium, p_comp, procedure, disruption=0.0, seed=7):
+    """Total cost is a random variable. The procedure is certain; the complication isn't.
+
+    A complication draws both a medical loss and the trip disruption it causes.
+    """
+    mean_loss = REVISION_COST.get(procedure, 75000) + disruption
     rng = random.Random(seed)
     uncovered, covered = [], []
 
@@ -246,8 +268,10 @@ def international_options(procedure, deductible, facts=(), coverage="standard", 
             continue
         # No CMS equivalent abroad — scaled from the national rate by destination risk.
         p_comp = min(0.6, NATIONAL_COMPLICATION_RATE * (dest["risk_multiplier"] / 0.024) * risk_factor)
-        travel = float(dest["flight_cost"]) + float(dest["lodging_cost_recovery_stay"])
-        premium = warranty_cost(procedure, p_comp)
+        trip = travel.trip_cost(dest)
+        disruption = disruption_cost(trip["nightly_rate"], trip["flight_cost"])
+        premium = warranty_cost(procedure, p_comp, disruption)
+        total = base + trip["travel_cost"] + premium
         raw.append({
             "hospital_id": h["hospital_id"],
             "name": h["name"],
@@ -255,14 +279,20 @@ def international_options(procedure, deductible, facts=(), coverage="standard", 
             "country": h["state_or_country"],
             "flight_hours": dest["flight_hours_from_jfk"],
             "base_cost": float(base),
-            "travel_cost": round(travel, 2),
+            "flight_cost": trip["flight_cost"],
+            "lodging_cost": trip["lodging_cost"],
+            "travel_cost": trip["travel_cost"],
+            "travel_source": {"flights": trip["flight_source"], "hotels": trip["hotel_source"]},
             "warranty_cost": premium,
-            "true_cost": round(base + travel + premium, 2),
-            "savings_vs_domestic": round(baseline - (base + travel + premium), 2),
+            "disruption_exposure": disruption,
+            "true_cost": round(total, 2),
+            "savings_vs_domestic": round(baseline - total, 2),
             "complication_rate": round(p_comp, 4),
             "complication_source": "estimated from national rate; no CMS equivalent abroad",
             "accreditation": h["accreditation"],
-            "distribution": cost_distribution(base + travel, premium, p_comp, procedure),
+            "distribution": cost_distribution(
+                base + trip["travel_cost"], premium, p_comp, procedure, disruption
+            ),
             "_dest": dest,
         })
 
