@@ -195,8 +195,13 @@ def endpoint_checks():
     # every international option must carry a reasoning string
     check("every option has reasoning",
           all(o.get("reasoning") for o in intl["options"]))
-    check("every option has a distribution",
-          all(o.get("distribution") for o in intl["options"]))
+    # Only the leading options get the 10k-draw simulation; the rest would never be charted.
+    with_dist = [o for o in intl["options"] if o.get("distribution")]
+    check("leading options carry a distribution",
+          len(with_dist) == min(pricing.DISTRIBUTION_DEPTH, len(intl["options"])),
+          f"{len(with_dist)} of {len(intl['options'])}")
+    check("the displayed option has a distribution",
+          bool(next(o for o in intl["options"] if not o["excluded_by_constraint"])["distribution"]))
 
 
 def main_run():

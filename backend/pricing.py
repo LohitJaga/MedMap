@@ -9,6 +9,7 @@ DATA = Path(__file__).parent / "data"
 SAFETY_THRESHOLD = 8.6
 DRAWS = 10000
 POLICY_LIMIT = 150000
+DISTRIBUTION_DEPTH = 6
 LOAD_FACTOR = 0.30
 
 # CMS national averages, used as the fallback and as the international baseline.
@@ -347,9 +348,8 @@ def international_options(procedure, deductible, facts=(), coverage="standard", 
             "complication_rate": round(p_comp, 4),
             "complication_source": "estimated from national rate; no CMS equivalent abroad",
             "accreditation": h["accreditation"],
-            "distribution": cost_distribution(
-                base + trip["travel_cost"], premium, p_comp, procedure, disruption
-            ),
+            "_fixed": base + trip["travel_cost"],
+            "_disruption": disruption,
             "_dest": dest,
         })
 
@@ -358,12 +358,20 @@ def international_options(procedure, deductible, facts=(), coverage="standard", 
     excluded = [o for o in raw if max_flight and o["flight_hours"] > max_flight]
 
     options = []
-    for o in eligible + excluded:
+    for idx, o in enumerate(eligible + excluded):
         dest = o.pop("_dest")
+        fixed, disruption = o.pop("_fixed"), o.pop("_disruption")
         o["excluded_by_constraint"] = bool(max_flight and o["flight_hours"] > max_flight)
         ce = excluded[0]["country"] if (eligible and o is eligible[0] and excluded
                                         and excluded[0]["true_cost"] < o["true_cost"]) else None
         o["reasoning"] = _reasoning(o, dest, drivers, max_flight, baseline, ce)
+        # 10k draws per option is the slowest thing here and only the leading few are
+        # ever charted. Run the simulation on those; leave the rest null.
+        o["distribution"] = (
+            cost_distribution(fixed, o["warranty_cost"], o["complication_rate"],
+                              procedure, disruption)
+            if idx < DISTRIBUTION_DEPTH else None
+        )
         options.append(o)
 
     return options, risk_factor, drivers
