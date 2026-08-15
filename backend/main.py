@@ -45,6 +45,7 @@ class CheckoutRequest(BaseModel):
     session_id: str
     hospital_id: str
     hotel_name: str | None = None
+    flight_id: str | None = None
 
 
 def session(sid):
@@ -140,6 +141,22 @@ def plan_search(state: str | None = None, q: str | None = None, limit: int = 50)
                 "source": "CMS Plan Attributes PUF, PY2026"}
     except Exception:
         return {"plans": [], "count": 0, "degraded": True}
+
+
+@app.get("/flights")
+def flights(hospital_id: str):
+    """Three round-trip options from JFK to this hospital's city.
+
+    Carriers on the route and the great-circle distance are real; fares are
+    modelled from distance and schedules are not live.
+    """
+    try:
+        found = pricing.flights_for(hospital_id)
+        if not found:
+            return {"hospital_id": hospital_id, "options": [], "degraded": True}
+        return found
+    except Exception:
+        return {"hospital_id": hospital_id, "options": [], "degraded": True}
 
 
 @app.get("/hotels")
@@ -332,7 +349,8 @@ def checkout(req: CheckoutRequest):
             found = pricing.hotels_for(req.hospital_id)
             if found:
                 hotel = next((h for h in found["hotels"] if h["name"] == req.hotel_name), None)
-        items = pricing.checkout_split(option, hotel)
+        flight = pricing.get_flight(req.hospital_id, req.flight_id) if req.flight_id else None
+        items = pricing.checkout_split(option, hotel, flight)
         return {
             "order_id": f"MM-{uuid.uuid4().hex[:6].upper()}",
             "line_items": items,

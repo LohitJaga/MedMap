@@ -402,6 +402,31 @@ def international_options(procedure, deductible, facts=(), coverage="standard", 
     return options, risk_factor, drivers
 
 
+def _dest_for_hospital(hospital_id):
+    for h in intl_hospitals():
+        if h["hospital_id"] == hospital_id:
+            return destinations().get(h["state_or_country"]), h
+    return None, None
+
+
+def flights_for(hospital_id):
+    dest, h = _dest_for_hospital(hospital_id)
+    if not dest:
+        return None
+    out = travel.flight_options(dest)
+    out["hospital_id"] = hospital_id
+    out["hospital_name"] = h["name"]
+    out["country"] = h["state_or_country"]
+    return out
+
+
+def get_flight(hospital_id, flight_id):
+    found = flights_for(hospital_id)
+    if not found:
+        return None
+    return next((f for f in found["options"] if f["flight_id"] == flight_id), None)
+
+
 def hotels_for(hospital_id, nights=None):
     """Real hotels near a hospital, nearest first.
 
@@ -433,16 +458,22 @@ def hotels_for(hospital_id, nights=None):
     }
 
 
-def checkout_split(option, hotel=None):
-    if hotel:
-        # A specific hotel was chosen, so bill lodging by name and keep flights separate.
+def checkout_split(option, hotel=None, flight=None):
+    if hotel or flight:
+        # Anything explicitly chosen is billed by name; the rest falls back to
+        # the bundled estimate for that leg.
         return [
             {"payee": option["name"], "label": "Procedure", "amount": option["base_cost"]},
-            {"payee": "Airline", "label": "Round-trip JFK",
-             "amount": option.get("flight_cost", 0)},
-            {"payee": hotel["name"],
-             "label": f"{hotel['nights']} nights, {hotel['distance_miles']} mi from hospital",
-             "amount": hotel["total"]},
+            {"payee": flight["carrier"] if flight else "Airline",
+             "label": (f"{flight['origin']}→{flight['destination']} round trip, "
+                       f"{flight['duration']}, "
+                       f"{'non-stop' if flight['stops'] == 0 else str(flight['stops']) + ' stop'}"
+                       if flight else "Round-trip JFK"),
+             "amount": flight["price"] if flight else option.get("flight_cost", 0)},
+            {"payee": hotel["name"] if hotel else "Lodging partner",
+             "label": (f"{hotel['nights']} nights, {hotel['distance_miles']} mi from hospital"
+                       if hotel else "Recovery stay"),
+             "amount": hotel["total"] if hotel else option.get("lodging_cost", 0)},
             {"payee": "Complication coverage underwriter",
              "label": "180-day complication policy", "amount": option["warranty_cost"]},
         ]
