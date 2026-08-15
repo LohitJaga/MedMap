@@ -118,10 +118,14 @@ def intake(req: IntakeRequest):
 
 @app.get("/procedures")
 def procedures():
-    return {"procedures": [
-        {"procedure_name": "Total Knee Replacement", "category": "orthopedic"},
-        {"procedure_name": "Total Hip Replacement", "category": "orthopedic"},
-    ]}
+    try:
+        return {"procedures": pricing._load("procedures.json"),
+                "source": "CMS Medicare Inpatient Hospitals, by DRG"}
+    except Exception:
+        return {"procedures": [
+            {"procedure_name": "Total Knee Replacement"},
+            {"procedure_name": "Total Hip Replacement"},
+        ], "degraded": True}
 
 
 @app.get("/plans")

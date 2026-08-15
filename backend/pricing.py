@@ -14,10 +14,36 @@ LOAD_FACTOR = 0.30
 
 # CMS national averages, used as the fallback and as the international baseline.
 NATIONAL_COMPLICATION_RATE = 0.024
+
+# Cost of treating a complication. Hip/knee are revision surgery; the rest are
+# the typical readmission/reoperation cost for that procedure.
 REVISION_COST = {
     "Total Knee Replacement": 75000,
     "Total Hip Replacement": 78000,
+    "Coronary Artery Bypass": 42000,
+    "Spinal Fusion": 68000,
+    "Gallbladder Removal": 24000,
+    "Hysterectomy": 27000,
+    "Bowel Resection": 46000,
+    "Cardiac Valve Replacement": 51000,
+    "Shoulder Replacement": 58000,
 }
+
+# CMS publishes a per-hospital complication rate for hip/knee only. Everything
+# else falls back to the published national rate, and the API says so.
+PROCEDURE_NATIONAL_RATE = {
+    "Coronary Artery Bypass": 0.140,
+    "Spinal Fusion": 0.062,
+    "Gallbladder Removal": 0.031,
+    "Hysterectomy": 0.038,
+    "Bowel Resection": 0.115,
+    "Cardiac Valve Replacement": 0.121,
+    "Shoulder Replacement": 0.041,
+}
+
+
+def has_per_hospital_rate(procedure):
+    return "Knee" in procedure or "Hip" in procedure
 
 # No true infinity — it isn't JSON-serializable and the uninsured path is the demo default.
 NO_CAP = 10_000_000.0
@@ -199,7 +225,10 @@ def domestic_options(procedure, deductible, coverage="standard", facts=(), state
         if state and h["state_or_country"] != state:
             continue
 
-        p_comp = min(0.6, h["complication_rate"] * risk_factor)
+        per_hospital = has_per_hospital_rate(procedure)
+        base_rate = (h["complication_rate"] if per_hospital
+                     else PROCEDURE_NATIONAL_RATE.get(procedure, NATIONAL_COMPLICATION_RATE))
+        p_comp = min(0.6, base_rate * risk_factor)
         oop = out_of_pocket(base, deductible, coverage, plan_id)
         revision_oop = out_of_pocket(revision, max(0.0, deductible - base), coverage, plan_id)
 
@@ -211,9 +240,13 @@ def domestic_options(procedure, deductible, coverage="standard", facts=(), state
             "base_cost": base,
             "out_of_pocket": oop,
             "complication_rate": round(p_comp, 4),
-            "complication_ci": [h["complication_ci_low"], h["complication_ci_high"]],
-            "measure_denominator": h["measure_denominator"],
-            "compared_to_national": h["compared_to_national"],
+            "complication_ci": ([h["complication_ci_low"], h["complication_ci_high"]]
+                                if per_hospital else None),
+            "complication_source": ("CMS per-hospital measure" if per_hospital
+                                    else "national average — CMS publishes no "
+                                         "per-hospital rate for this procedure"),
+            "measure_denominator": h["measure_denominator"] if per_hospital else None,
+            "compared_to_national": h["compared_to_national"] if per_hospital else None,
             "expected_cost": round(oop + p_comp * revision_oop, 2),
             "source_url": h["source_url"],
         })
@@ -249,6 +282,25 @@ def rank_inversion(options):
             f"{b['complication_rate']:.1%}, so it costs ${best['gap']:,.0f} more in expectation."
         ),
     }
+
+
+def _median(xs):
+    s = sorted(xs)
+    return s[len(s) // 2] if s else None
+
+
+def _domestic_ratio(procedure):
+    """How this procedure costs relative to a knee replacement, from real CMS
+    medians. Used to scale international pricing where none is published."""
+    if procedure == "Total Knee Replacement":
+        return 1.0
+    hs = us_hospitals()
+    target = _median([h["prices"][procedure] for h in hs if procedure in h["prices"]])
+    knee = _median([h["prices"]["Total Knee Replacement"] for h in hs
+                    if "Total Knee Replacement" in h["prices"]])
+    if not target or not knee:
+        return None
+    return round(target / knee, 4)
 
 
 def price_spread(procedure):
@@ -341,14 +393,25 @@ def international_options(procedure, deductible, facts=(), coverage="standard", 
         if f.get("category") == "max_flight_hours":
             max_flight = float(f["value"])
 
+    ratio = _domestic_ratio(procedure)
     raw = []
     for h in intl_hospitals():
         base = h["prices"].get(procedure)
+        scaled = False
+        if base is None and ratio:
+            # No published international price for this procedure, so scale that
+            # hospital's own knee price by the domestic cost ratio between them.
+            knee = h["prices"].get("Total Knee Replacement")
+            if knee:
+                base = round(knee * ratio, 2)
+                scaled = True
         dest = dests.get(h["state_or_country"])
         if base is None or not dest:
             continue
-        # No CMS equivalent abroad — scaled from the national rate by destination risk.
-        p_comp = min(0.6, NATIONAL_COMPLICATION_RATE * (dest["risk_multiplier"] / 0.024) * risk_factor)
+        # No CMS equivalent abroad — the procedure's national rate scaled by
+        # destination risk and the patient's own comorbidities.
+        national = PROCEDURE_NATIONAL_RATE.get(procedure, NATIONAL_COMPLICATION_RATE)
+        p_comp = min(0.6, national * (dest["risk_multiplier"] / 0.024) * risk_factor)
         trip = travel.trip_cost(dest)
         disruption = disruption_cost(trip["nightly_rate"], trip["flight_cost"])
         premium = warranty_cost(procedure, p_comp, disruption)
@@ -372,6 +435,8 @@ def international_options(procedure, deductible, facts=(), coverage="standard", 
             "savings_vs_domestic": round(baseline - total, 2),
             "complication_rate": round(p_comp, 4),
             "complication_source": "estimated from national rate; no CMS equivalent abroad",
+            "price_basis": ("scaled from this hospital's published knee pricing"
+                            if scaled else "published international price"),
             "accreditation": h["accreditation"],
             "_fixed": base + trip["travel_cost"],
             "_disruption": disruption,
@@ -427,6 +492,36 @@ def get_flight(hospital_id, flight_id):
     return next((f for f in found["options"] if f["flight_id"] == flight_id), None)
 
 
+# OSM carries no prices, but it does carry the hotel's name and sometimes a star
+# rating. Brand tier is real information, so the destination's average nightly
+# rate is scaled by it rather than applied flat to every property.
+BRAND_TIERS = [
+    (2.4, ["ritz", "four seasons", "st. regis", "peninsula", "mandarin oriental",
+           "shangri", "conrad", "waldorf", "park hyatt", "raffles"]),
+    (1.8, ["sheraton", "hilton", "marriott", "hyatt", "intercontinental", "westin",
+           "sofitel", "radisson blu", "pullman", "le meridien", "kempinski",
+           "crowne plaza", "taj ", "oberoi", "swissotel", "grand hyatt"]),
+    (1.35, ["novotel", "courtyard", "doubletree", "holiday inn", "radisson",
+            "mercure", "four points", "aloft", "park inn", "residency", "suites"]),
+    (0.75, ["hostel", "guesthouse", "guest house", "inn ", "lodge", "motel",
+            "backpack", "budget", "super ", "ibis", "oyo", "b&b"]),
+]
+
+
+def _hotel_tier(name, stars):
+    n = (name or "").lower()
+    for mult, keys in BRAND_TIERS:
+        if any(k in n for k in keys):
+            return mult
+    if stars:
+        try:
+            s = float(str(stars).split("-")[0])
+            return {1: 0.7, 2: 0.85, 3: 1.1, 4: 1.6, 5: 2.3}.get(int(s), 1.0)
+        except (TypeError, ValueError):
+            pass
+    return 1.0
+
+
 def hotels_for(hospital_id, nights=None):
     """Real hotels near a hospital, nearest first.
 
@@ -440,13 +535,30 @@ def hotels_for(hospital_id, nights=None):
         entry = None
     if not entry:
         return None
+    # OSM tagging is crowd-sourced; restaurants and shops occasionally carry
+    # tourism=hotel. Drop the obvious ones rather than offer them as lodging.
+    NOT_LODGING = ("restaurant", "snacks", "sweet", "cafe", "coffee", "bakery",
+                   "bar &", "pharmacy", "clinic", "hospital", "spa &")
+
     out = []
     for h in entry["hotels"]:
+        if any(w in (h.get("name") or "").lower() for w in NOT_LODGING):
+            continue
+        tier = _hotel_tier(h.get("name"), h.get("stars"))
+        # Being within walking distance of a major hospital carries a small
+        # premium; beyond a couple of miles it comes back off.
+        prox = 1.0 + max(-0.12, min(0.10, (1.2 - float(h["distance_miles"])) * 0.08))
+        nightly = round(h["nightly_rate"] * tier * prox, 2)
         out.append({
             **h,
+            "nightly_rate": nightly,
+            "tier": ("upscale" if tier >= 1.8 else
+                     "midscale" if tier >= 1.3 else
+                     "budget" if tier < 0.9 else "standard"),
             "nights": nights,
-            "total": round(h["nightly_rate"] * nights, 2),
+            "total": round(nightly * nights, 2),
         })
+    out.sort(key=lambda h: h["distance_miles"])
     return {
         "hospital_id": entry["hospital_id"],
         "hospital_name": entry["hospital_name"],
@@ -454,7 +566,9 @@ def hotels_for(hospital_id, nights=None):
         "hospital_lon": entry["hospital_lon"],
         "nights": nights,
         "hotels": out,
-        "source": "OpenStreetMap (names, locations, distances); rates are destination averages",
+        "source": ("OpenStreetMap for names, locations and distances; nightly rate is "
+                   "the destination average scaled by the hotel's brand tier and "
+                   "distance to the hospital"),
     }
 
 

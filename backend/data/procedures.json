@@ -1,0 +1,50 @@
+[
+ {
+  "procedure_name": "Total Knee Replacement",
+  "hospital_count": 1173,
+  "complication_source": "CMS per-hospital rate (COMP_HIP_KNEE)",
+  "national_rate": null
+ },
+ {
+  "procedure_name": "Total Hip Replacement",
+  "hospital_count": 1173,
+  "complication_source": "CMS per-hospital rate (COMP_HIP_KNEE)",
+  "national_rate": null
+ },
+ {
+  "procedure_name": "Spinal Fusion",
+  "hospital_count": 487,
+  "complication_source": "national average \u2014 CMS publishes no per-hospital rate",
+  "national_rate": 0.062
+ },
+ {
+  "procedure_name": "Bowel Resection",
+  "hospital_count": 409,
+  "complication_source": "national average \u2014 CMS publishes no per-hospital rate",
+  "national_rate": 0.115
+ },
+ {
+  "procedure_name": "Shoulder Replacement",
+  "hospital_count": 351,
+  "complication_source": "national average \u2014 CMS publishes no per-hospital rate",
+  "national_rate": 0.041
+ },
+ {
+  "procedure_name": "Cardiac Valve Replacement",
+  "hospital_count": 257,
+  "complication_source": "national average \u2014 CMS publishes no per-hospital rate",
+  "national_rate": 0.121
+ },
+ {
+  "procedure_name": "Coronary Artery Bypass",
+  "hospital_count": 249,
+  "complication_source": "national average \u2014 CMS publishes no per-hospital rate",
+  "national_rate": 0.14
+ },
+ {
+  "procedure_name": "Gallbladder Removal",
+  "hospital_count": 137,
+  "complication_source": "national average \u2014 CMS publishes no per-hospital rate",
+  "national_rate": 0.031
+ }
+]
