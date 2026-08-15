@@ -44,6 +44,7 @@ class InternationalRequest(BaseModel):
 class CheckoutRequest(BaseModel):
     session_id: str
     hospital_id: str
+    hotel_name: str | None = None
 
 
 def session(sid):
@@ -130,11 +131,31 @@ def plan_search(state: str | None = None, q: str | None = None, limit: int = 50)
     (NY, CA, and others) are not in this dataset.
     """
     try:
-        found = pricing.find_plans(state, q, limit)
-        return {"plans": found, "count": len(found),
+        found, scope = pricing.find_plans(state, q, limit)
+        note = None
+        if scope == "national" and state:
+            note = (f"{state} runs its own exchange and is not on healthcare.gov — "
+                    f"showing comparable plans nationally")
+        return {"plans": found, "count": len(found), "scope": scope, "note": note,
                 "source": "CMS Plan Attributes PUF, PY2026"}
     except Exception:
         return {"plans": [], "count": 0, "degraded": True}
+
+
+@app.get("/hotels")
+def hotels(hospital_id: str, nights: int | None = None):
+    """Real hotels near an international hospital, nearest first.
+
+    Names, coordinates and distances are from OpenStreetMap. Rates are the
+    destination's published mid-range average — OSM has no pricing.
+    """
+    try:
+        found = pricing.hotels_for(hospital_id, nights)
+        if not found:
+            return {"hospital_id": hospital_id, "hotels": [], "degraded": True}
+        return found
+    except Exception:
+        return {"hospital_id": hospital_id, "hotels": [], "degraded": True}
 
 
 @app.post("/quote/domestic")
@@ -227,12 +248,30 @@ def explain(req: ExplainRequest):
         eligible = [o for o in intl if not o["excluded_by_constraint"]]
         best_eligible = eligible[0] if eligible else best_intl
 
+        terms = pricing.coverage_terms(s["coverage"], s.get("plan_id"))
+        chosen = pricing.get_plan(s["plan_id"]) if s.get("plan_id") else None
+
         facts = {
             "patient": {
                 "conditions": [f["fact"] for f in s["facts"]],
                 "coverage": s["coverage"],
                 "risk_multiplier": risk_factor,
             },
+            "insurance_plan": ({
+                "issuer": chosen["issuer"],
+                "plan": chosen["name"],
+                "metal_level": chosen["metal"],
+                "plan_type": chosen["plan_type"],
+                "deductible": chosen["deductible"],
+                "out_of_pocket_max": chosen["oop_max"],
+                "coinsurance_pct": round(chosen["coinsurance"] * 100),
+                "source": "CMS Marketplace Plan Attributes PUF, plan year 2026",
+            } if chosen else {
+                "plan": terms["source"],
+                "out_of_pocket_max": (terms["oop_max"]
+                                      if terms["oop_max"] < pricing.NO_CAP else None),
+                "coinsurance_pct": round(terms["coinsurance"] * 100),
+            }),
             "us_market": {
                 "hospitals_analyzed": total,
                 "cheapest_price": spread["min"],
@@ -272,9 +311,10 @@ def explain(req: ExplainRequest):
             "instruction": (
                 "You are explaining a surgery cost analysis to a patient. Using ONLY the "
                 "numbers in `facts`, write 4 short sentences: (1) what the same procedure "
-                "costs across US hospitals, (2) why the recommended hospital ranks first "
-                "given its complication rate, (3) whether going abroad is worth it for this "
-                "patient and why, (4) what the coverage premium buys in terms of worst case. "
+                "costs across US hospitals, (2) what their own insurance plan leaves them "
+                "paying, naming the plan and its deductible and out-of-pocket max, "
+                "(3) whether going abroad is worth it for this patient and why, "
+                "(4) what the coverage premium buys in terms of worst case. "
                 "Never calculate, estimate, round, or introduce any number not present in "
                 "`facts`. Plain language, no jargon, no bullet points."
             ),
@@ -287,7 +327,12 @@ def explain(req: ExplainRequest):
 def checkout(req: CheckoutRequest):
     try:
         option = session(req.session_id)["quotes"][req.hospital_id]
-        items = pricing.checkout_split(option)
+        hotel = None
+        if req.hotel_name:
+            found = pricing.hotels_for(req.hospital_id)
+            if found:
+                hotel = next((h for h in found["hotels"] if h["name"] == req.hotel_name), None)
+        items = pricing.checkout_split(option, hotel)
         return {
             "order_id": f"MM-{uuid.uuid4().hex[:6].upper()}",
             "line_items": items,

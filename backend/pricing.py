@@ -74,18 +74,41 @@ def plans():
     return _load("plans.json")
 
 
+def _matches(p, q):
+    if not q:
+        return True
+    hay = f"{p.get('issuer') or ''} {p.get('name') or ''} {p.get('metal') or ''}".lower()
+    return all(tok in hay for tok in q.split())
+
+
 def find_plans(state=None, query=None, limit=50):
-    out = []
-    q = (query or "").lower()
-    for p in plans():
-        if state and p["state"] != state:
+    """Search real marketplace plans.
+
+    healthcare.gov covers 30 states; NY, CA and other state-run exchanges are absent.
+    Rather than return nothing for those, fall back to a national search and say so.
+    """
+    q = (query or "").lower().strip()
+    all_plans = plans()
+
+    in_state = [p for p in all_plans if state and p["state"] == state and _matches(p, q)]
+    scope = "state"
+    if not in_state:
+        in_state = [p for p in all_plans if _matches(p, q)]
+        scope = "national" if state else "all"
+
+    # Cheapest deductible first, then a stable name order.
+    in_state.sort(key=lambda p: (p["deductible"], p["issuer"] or "", p["name"] or ""))
+
+    seen, out = set(), []
+    for p in in_state:
+        key = (p["issuer"], p["name"], p["deductible"], p["oop_max"])
+        if key in seen:
             continue
-        if q and q not in (p["name"] or "").lower() and q not in (p["issuer"] or "").lower():
-            continue
+        seen.add(key)
         out.append(p)
         if len(out) >= limit:
             break
-    return out
+    return out, scope
 
 
 def get_plan(plan_id):
@@ -377,7 +400,50 @@ def international_options(procedure, deductible, facts=(), coverage="standard", 
     return options, risk_factor, drivers
 
 
-def checkout_split(option):
+def hotels_for(hospital_id, nights=None):
+    """Real hotels near a hospital, nearest first.
+
+    Names, coordinates and distances come from OpenStreetMap. OSM has no pricing,
+    so the nightly rate is the destination's published mid-range average and says so.
+    """
+    nights = nights or travel.RECOVERY_NIGHTS
+    try:
+        entry = _load("hotels.json").get(hospital_id)
+    except Exception:
+        entry = None
+    if not entry:
+        return None
+    out = []
+    for h in entry["hotels"]:
+        out.append({
+            **h,
+            "nights": nights,
+            "total": round(h["nightly_rate"] * nights, 2),
+        })
+    return {
+        "hospital_id": entry["hospital_id"],
+        "hospital_name": entry["hospital_name"],
+        "hospital_lat": entry["hospital_lat"],
+        "hospital_lon": entry["hospital_lon"],
+        "nights": nights,
+        "hotels": out,
+        "source": "OpenStreetMap (names, locations, distances); rates are destination averages",
+    }
+
+
+def checkout_split(option, hotel=None):
+    if hotel:
+        # A specific hotel was chosen, so bill lodging by name and keep flights separate.
+        return [
+            {"payee": option["name"], "label": "Procedure", "amount": option["base_cost"]},
+            {"payee": "Airline", "label": "Round-trip JFK",
+             "amount": option.get("flight_cost", 0)},
+            {"payee": hotel["name"],
+             "label": f"{hotel['nights']} nights, {hotel['distance_miles']} mi from hospital",
+             "amount": hotel["total"]},
+            {"payee": "Complication coverage underwriter",
+             "label": "180-day complication policy", "amount": option["warranty_cost"]},
+        ]
     return [
         {"payee": option["name"], "label": "Procedure", "amount": option["base_cost"]},
         {"payee": "Travel partner", "label": "Round-trip JFK + recovery stay",
