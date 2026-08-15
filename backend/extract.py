@@ -59,8 +59,8 @@ def parse(text):
             facts.append({"fact": label, "category": category})
 
     age = None
-    for pat in (r"\b(\d{2})\s*(?:years old|yrs old|yo)\b",
-                r"\b(?:i'?m|i am|aged?)\s*(\d{2})\b",
+    for pat in (r"\b(\d{2})[\s-]*(?:years?[\s-]*old|yrs?[\s-]*old|yo)\b",
+                r"\b(?:i'?m|i am|aged?)\s*(?:a\s+)?(\d{2})\b",
                 # bare age in a list: "I'm uninsured, 62, diabetic"
                 r"[,;]\s*(\d{2})\s*[,;]"):
         m = re.search(pat, t)
