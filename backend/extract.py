@@ -9,6 +9,13 @@ import re
 PROCEDURES = [
     (r"\bknee\b", "Total Knee Replacement"),
     (r"\bhip\b", "Total Hip Replacement"),
+    (r"\b(bypass|cabg|coronary artery)\b", "Coronary Artery Bypass"),
+    (r"\b(spinal fusion|spine fusion|lumbar fusion|spinal)\b", "Spinal Fusion"),
+    (r"\b(gallbladder|cholecystectomy)\b", "Gallbladder Removal"),
+    (r"\b(hysterectomy|uterus)\b", "Hysterectomy"),
+    (r"\b(bowel|colectomy|colon resection)\b", "Bowel Resection"),
+    (r"\b(valve|aortic valve|mitral)\b", "Cardiac Valve Replacement"),
+    (r"\bshoulder\b", "Shoulder Replacement"),
 ]
 
 CONDITIONS = [
@@ -48,11 +55,13 @@ def parse(text):
     t = text.lower()
     facts = []
 
-    procedure = "Total Knee Replacement"
+    # Longest match wins, so "total knee replacement" is not beaten by a stray
+    # "spinal" elsewhere in the sentence.
+    procedure, best = "Total Knee Replacement", -1
     for pat, name in PROCEDURES:
-        if re.search(pat, t):
-            procedure = name
-            break
+        m = re.search(pat, t)
+        if m and len(m.group(0)) > best:
+            procedure, best = name, len(m.group(0))
 
     for pat, category, label in CONDITIONS:
         if re.search(pat, t):

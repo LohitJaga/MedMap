@@ -49,7 +49,8 @@ def has_per_hospital_rate(procedure):
 NO_CAP = 10_000_000.0
 
 COVERAGE = {
-    "uninsured": {"coinsurance": 1.0, "oop_max": NO_CAP, "self_pay_discount": 0.65},
+    # base_cost is already the negotiated/cash rate, so no further discount.
+    "uninsured": {"coinsurance": 1.0, "oop_max": NO_CAP, "self_pay_discount": 1.0},
     "high_deductible": {"coinsurance": 0.30, "oop_max": 17400.0, "self_pay_discount": 1.0},
     "standard": {"coinsurance": 0.20, "oop_max": 9200.0, "self_pay_discount": 1.0},
 }
@@ -208,6 +209,26 @@ def warranty_cost(procedure, p_comp, disruption=0.0):
     return round(p_comp * covered * (1 + LOAD_FACTOR), 2)
 
 
+# CMS reports two very different numbers per hospital: the chargemaster charge
+# (Avg_Submtd_Cvrd_Chrg), which almost nobody pays, and what Medicare actually
+# paid (Avg_Tot_Pymt_Amt). RAND's hospital price studies put commercial and
+# cash-pay rates near 2.5x Medicare, so that is the price a real patient faces.
+COMMERCIAL_MULTIPLE = 2.5
+
+
+def real_price(hospital, procedure):
+    """What this procedure actually costs here, not what it is billed at."""
+    billed = hospital["prices"].get(procedure)
+    paid = hospital.get("medicare_payment")
+    if paid:
+        # Scale the Medicare payment for this hospital by how its charge for this
+        # procedure compares to its charge for a knee, so procedure mix is kept.
+        knee = hospital["prices"].get("Total Knee Replacement")
+        ratio = (billed / knee) if (billed and knee) else 1.0
+        return round(paid * COMMERCIAL_MULTIPLE * ratio, 2), billed
+    return billed, billed
+
+
 def domestic_options(procedure, deductible, coverage="standard", facts=(), state=None,
                      limit=40, plan_id=None):
     """Every US hospital with both a real price and a real CMS complication rate.
@@ -219,11 +240,14 @@ def domestic_options(procedure, deductible, coverage="standard", facts=(), state
     out = []
 
     for h in us_hospitals():
-        base = h["prices"].get(procedure)
-        if base is None:
+        if procedure not in h["prices"]:
             continue
         if state and h["state_or_country"] != state:
             continue
+        base, billed = real_price(h, procedure)
+        if not base:
+            continue
+        base = float(base)
 
         per_hospital = has_per_hospital_rate(procedure)
         base_rate = (h["complication_rate"] if per_hospital
@@ -238,6 +262,9 @@ def domestic_options(procedure, deductible, coverage="standard", facts=(), state
             "city": h["city"],
             "state": h["state_or_country"],
             "base_cost": base,
+            "billed_charge": billed,
+            "price_basis": ("negotiated/cash rate, ~2.5x this hospital's Medicare "
+                            "payment (RAND hospital price study)"),
             "out_of_pocket": oop,
             "complication_rate": round(p_comp, 4),
             "complication_ci": ([h["complication_ci_low"], h["complication_ci_high"]]
@@ -305,17 +332,28 @@ def _domestic_ratio(procedure):
 
 def price_spread(procedure):
     """Headline stat: what the same procedure costs across the country."""
-    prices = [h["prices"][procedure] for h in us_hospitals() if procedure in h["prices"]]
+    prices = [real_price(h, procedure)[0] for h in us_hospitals()
+              if procedure in h["prices"]]
+    prices = [p for p in prices if p]
     if not prices:
         return None
     prices.sort()
     lo, hi = prices[0], prices[-1]
+    billed = sorted(h["prices"][procedure] for h in us_hospitals()
+                    if procedure in h["prices"])
+    med_billed = billed[len(billed) // 2] if billed else None
+    med_real = prices[len(prices) // 2]
     return {
         "hospital_count": len(prices),
         "min": lo,
         "max": hi,
-        "median": prices[len(prices) // 2],
+        "median": med_real,
         "multiple": round(hi / lo, 1),
+        # Hospitals bill a chargemaster rate and accept far less. The gap is
+        # itself a finding, and it comes straight from the CMS columns.
+        "median_billed_charge": med_billed,
+        "billed_vs_paid_multiple": (round(med_billed / med_real, 1)
+                                    if med_billed and med_real else None),
     }
 
 
