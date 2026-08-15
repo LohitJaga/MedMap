@@ -49,6 +49,45 @@ def session(sid):
     )
 
 
+@app.get("/")
+def root():
+    try:
+        spread = pricing.price_spread("Total Knee Replacement")
+        counts = {
+            "us_hospitals": len(pricing.us_hospitals()),
+            "international_hospitals": len(pricing.intl_hospitals()),
+            "countries": len(pricing.destinations()),
+            "insurance_plans": len(pricing.plans()),
+        }
+    except Exception:
+        spread, counts = None, {}
+    return {
+        "service": "MedMap API",
+        "docs": "/docs",
+        "data": counts,
+        "headline": (
+            f"Same knee replacement: ${spread['min']:,.0f} to ${spread['max']:,.0f} "
+            f"across {spread['hospital_count']:,} US hospitals ({spread['multiple']}x)"
+            if spread else None
+        ),
+        "sources": [
+            "CMS Medicare Inpatient Hospitals - by Provider and Service",
+            "CMS Complications and Deaths - Hospital (COMP_HIP_KNEE)",
+            "CMS Marketplace Plan Attributes PUF PY2026",
+        ],
+        "endpoints": {
+            "GET  /health": "liveness",
+            "GET  /procedures": "available procedures",
+            "GET  /plans?state=&q=": "real ACA plan lookup",
+            "POST /intake": "free text -> structured facts",
+            "POST /quote/domestic": "US hospitals ranked by expected cost",
+            "POST /quote/international": "bundled international options",
+            "POST /explain": "narrative payload for the LLM layer",
+            "POST /checkout": "three-way payment split",
+        },
+    }
+
+
 @app.get("/health")
 def health():
     return {"ok": True}
