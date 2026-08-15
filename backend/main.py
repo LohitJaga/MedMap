@@ -194,6 +194,8 @@ def quote_domestic(req: DomesticRequest):
         s["plan_id"] = req.plan_id
         s["procedure"] = req.procedure_name
         s["baseline"] = options[0]["expected_cost"]
+        # Domestic options must be checkout-able too, not just international ones.
+        s["quotes"].update({o["hospital_id"]: o for o in options})
         return {
             "options": options,
             "coverage": req.coverage,
@@ -229,7 +231,7 @@ def quote_international(req: InternationalRequest):
         )
         if not options:
             return stubs.international()
-        s["quotes"] = {o["hospital_id"]: o for o in options}
+        s["quotes"].update({o["hospital_id"]: o for o in options})
         return {
             "options": options,
             "coverage": s["coverage"],

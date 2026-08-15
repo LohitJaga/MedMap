@@ -573,6 +573,18 @@ def hotels_for(hospital_id, nights=None):
 
 
 def checkout_split(option, hotel=None, flight=None):
+    # Domestic care has no flight, no lodging and no complication policy — the
+    # only line is the procedure. Showing zeroed travel rows makes that explicit
+    # rather than leaving the reader to wonder what was omitted.
+    if "country" not in option:
+        return [
+            {"payee": option["name"], "label": "Procedure",
+             "amount": option.get("out_of_pocket", option.get("base_cost", 0))},
+            {"payee": "Travel", "label": "Domestic care — none required", "amount": 0},
+            {"payee": "Recovery stay", "label": "Recover at home", "amount": 0},
+            {"payee": "Complication coverage",
+             "label": "Covered by your existing US plan", "amount": 0},
+        ]
     if hotel or flight:
         # Anything explicitly chosen is billed by name; the rest falls back to
         # the bundled estimate for that leg.
