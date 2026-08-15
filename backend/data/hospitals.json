@@ -1,0 +1,182 @@
+[
+  {
+    "hospital_id": "DOM_001",
+    "name": "NYU Langone Orthopedic Hospital",
+    "city": "New York",
+    "state_or_country": "NY",
+    "location_type": "domestic",
+    "safety_score": 9.2,
+    "accreditation": "Leapfrog A",
+    "prices": {
+      "Total Knee Replacement": 58000,
+      "Total Hip Replacement": 61000,
+      "Coronary Artery Bypass": 175000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "DOM_002",
+    "name": "Hospital for Special Surgery",
+    "city": "New York",
+    "state_or_country": "NY",
+    "location_type": "domestic",
+    "safety_score": 9.5,
+    "accreditation": "Leapfrog A",
+    "prices": {
+      "Total Knee Replacement": 54000,
+      "Total Hip Replacement": 57000,
+      "Coronary Artery Bypass": 168000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "DOM_003",
+    "name": "Newark Beth Israel Medical Center",
+    "city": "Newark",
+    "state_or_country": "NJ",
+    "location_type": "domestic",
+    "safety_score": 8.8,
+    "accreditation": "Leapfrog B",
+    "prices": {
+      "Total Knee Replacement": 41000,
+      "Total Hip Replacement": 44000,
+      "Coronary Artery Bypass": 142000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "DOM_004",
+    "name": "Stamford Health",
+    "city": "Stamford",
+    "state_or_country": "CT",
+    "location_type": "domestic",
+    "safety_score": 9.0,
+    "accreditation": "Leapfrog A",
+    "prices": {
+      "Total Knee Replacement": 46000,
+      "Total Hip Replacement": 49000,
+      "Coronary Artery Bypass": 151000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "DOM_005",
+    "name": "Mercy Regional Medical Center",
+    "city": "Scranton",
+    "state_or_country": "PA",
+    "location_type": "domestic",
+    "safety_score": 7.9,
+    "accreditation": "Leapfrog C",
+    "prices": {
+      "Total Knee Replacement": 35000,
+      "Total Hip Replacement": 37000,
+      "Coronary Artery Bypass": 121000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "DOM_006",
+    "name": "Riverside Community Hospital",
+    "city": "Trenton",
+    "state_or_country": "NJ",
+    "location_type": "domestic",
+    "safety_score": 7.4,
+    "accreditation": "Leapfrog C",
+    "prices": {
+      "Total Knee Replacement": 33000,
+      "Total Hip Replacement": 35000,
+      "Coronary Artery Bypass": 118000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "INT_001",
+    "name": "CIMA Hospital San Jose",
+    "city": "San Jose",
+    "state_or_country": "Costa Rica",
+    "location_type": "international",
+    "safety_score": 9.1,
+    "accreditation": "JCI accredited",
+    "prices": {
+      "Total Knee Replacement": 12000,
+      "Total Hip Replacement": 13600,
+      "Coronary Artery Bypass": 27000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "INT_002",
+    "name": "Apollo Hospitals Chennai",
+    "city": "Chennai",
+    "state_or_country": "India",
+    "location_type": "international",
+    "safety_score": 9.3,
+    "accreditation": "JCI accredited",
+    "prices": {
+      "Total Knee Replacement": 7500,
+      "Total Hip Replacement": 8500,
+      "Coronary Artery Bypass": 9500
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "INT_003",
+    "name": "Hospital Angeles Tijuana",
+    "city": "Tijuana",
+    "state_or_country": "Mexico",
+    "location_type": "international",
+    "safety_score": 8.7,
+    "accreditation": "JCI accredited",
+    "prices": {
+      "Total Knee Replacement": 12500,
+      "Total Hip Replacement": 13000,
+      "Coronary Artery Bypass": 27500
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "INT_004",
+    "name": "Bumrungrad International Hospital",
+    "city": "Bangkok",
+    "state_or_country": "Thailand",
+    "location_type": "international",
+    "safety_score": 9.4,
+    "accreditation": "JCI accredited",
+    "prices": {
+      "Total Knee Replacement": 14000,
+      "Total Hip Replacement": 15500,
+      "Coronary Artery Bypass": 24000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "INT_005",
+    "name": "Acibadem Maslak Hospital",
+    "city": "Istanbul",
+    "state_or_country": "Turkey",
+    "location_type": "international",
+    "safety_score": 9.0,
+    "accreditation": "JCI accredited",
+    "prices": {
+      "Total Knee Replacement": 11000,
+      "Total Hip Replacement": 12000,
+      "Coronary Artery Bypass": 20000
+    },
+    "source_url": "TODO-data-lane"
+  },
+  {
+    "hospital_id": "INT_006",
+    "name": "Fundacion Santa Fe de Bogota",
+    "city": "Bogota",
+    "state_or_country": "Colombia",
+    "location_type": "international",
+    "safety_score": 8.9,
+    "accreditation": "JCI accredited",
+    "prices": {
+      "Total Knee Replacement": 12000,
+      "Total Hip Replacement": 12500,
+      "Coronary Artery Bypass": 19000
+    },
+    "source_url": "TODO-data-lane"
+  }
+]
