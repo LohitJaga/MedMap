@@ -1,182 +1,39 @@
 [
-  {
-    "hospital_id": "DOM_001",
-    "name": "NYU Langone Orthopedic Hospital",
-    "city": "New York",
-    "state_or_country": "NY",
-    "location_type": "domestic",
-    "safety_score": 9.2,
-    "accreditation": "Leapfrog A",
-    "prices": {
-      "Total Knee Replacement": 58000,
-      "Total Hip Replacement": 61000,
-      "Coronary Artery Bypass": 175000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "DOM_002",
-    "name": "Hospital for Special Surgery",
-    "city": "New York",
-    "state_or_country": "NY",
-    "location_type": "domestic",
-    "safety_score": 9.5,
-    "accreditation": "Leapfrog A",
-    "prices": {
-      "Total Knee Replacement": 54000,
-      "Total Hip Replacement": 57000,
-      "Coronary Artery Bypass": 168000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "DOM_003",
-    "name": "Newark Beth Israel Medical Center",
-    "city": "Newark",
-    "state_or_country": "NJ",
-    "location_type": "domestic",
-    "safety_score": 8.8,
-    "accreditation": "Leapfrog B",
-    "prices": {
-      "Total Knee Replacement": 41000,
-      "Total Hip Replacement": 44000,
-      "Coronary Artery Bypass": 142000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "DOM_004",
-    "name": "Stamford Health",
-    "city": "Stamford",
-    "state_or_country": "CT",
-    "location_type": "domestic",
-    "safety_score": 9.0,
-    "accreditation": "Leapfrog A",
-    "prices": {
-      "Total Knee Replacement": 46000,
-      "Total Hip Replacement": 49000,
-      "Coronary Artery Bypass": 151000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "DOM_005",
-    "name": "Mercy Regional Medical Center",
-    "city": "Scranton",
-    "state_or_country": "PA",
-    "location_type": "domestic",
-    "safety_score": 7.9,
-    "accreditation": "Leapfrog C",
-    "prices": {
-      "Total Knee Replacement": 35000,
-      "Total Hip Replacement": 37000,
-      "Coronary Artery Bypass": 121000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "DOM_006",
-    "name": "Riverside Community Hospital",
-    "city": "Trenton",
-    "state_or_country": "NJ",
-    "location_type": "domestic",
-    "safety_score": 7.4,
-    "accreditation": "Leapfrog C",
-    "prices": {
-      "Total Knee Replacement": 33000,
-      "Total Hip Replacement": 35000,
-      "Coronary Artery Bypass": 118000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "INT_001",
-    "name": "CIMA Hospital San Jose",
-    "city": "San Jose",
-    "state_or_country": "Costa Rica",
-    "location_type": "international",
-    "safety_score": 9.1,
-    "accreditation": "JCI accredited",
-    "prices": {
-      "Total Knee Replacement": 12000,
-      "Total Hip Replacement": 13600,
-      "Coronary Artery Bypass": 27000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "INT_002",
-    "name": "Apollo Hospitals Chennai",
-    "city": "Chennai",
-    "state_or_country": "India",
-    "location_type": "international",
-    "safety_score": 9.3,
-    "accreditation": "JCI accredited",
-    "prices": {
-      "Total Knee Replacement": 7500,
-      "Total Hip Replacement": 8500,
-      "Coronary Artery Bypass": 9500
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "INT_003",
-    "name": "Hospital Angeles Tijuana",
-    "city": "Tijuana",
-    "state_or_country": "Mexico",
-    "location_type": "international",
-    "safety_score": 8.7,
-    "accreditation": "JCI accredited",
-    "prices": {
-      "Total Knee Replacement": 12500,
-      "Total Hip Replacement": 13000,
-      "Coronary Artery Bypass": 27500
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "INT_004",
-    "name": "Bumrungrad International Hospital",
-    "city": "Bangkok",
-    "state_or_country": "Thailand",
-    "location_type": "international",
-    "safety_score": 9.4,
-    "accreditation": "JCI accredited",
-    "prices": {
-      "Total Knee Replacement": 14000,
-      "Total Hip Replacement": 15500,
-      "Coronary Artery Bypass": 24000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "INT_005",
-    "name": "Acibadem Maslak Hospital",
-    "city": "Istanbul",
-    "state_or_country": "Turkey",
-    "location_type": "international",
-    "safety_score": 9.0,
-    "accreditation": "JCI accredited",
-    "prices": {
-      "Total Knee Replacement": 11000,
-      "Total Hip Replacement": 12000,
-      "Coronary Artery Bypass": 20000
-    },
-    "source_url": "TODO-data-lane"
-  },
-  {
-    "hospital_id": "INT_006",
-    "name": "Fundacion Santa Fe de Bogota",
-    "city": "Bogota",
-    "state_or_country": "Colombia",
-    "location_type": "international",
-    "safety_score": 8.9,
-    "accreditation": "JCI accredited",
-    "prices": {
-      "Total Knee Replacement": 12000,
-      "Total Hip Replacement": 12500,
-      "Coronary Artery Bypass": 19000
-    },
-    "source_url": "TODO-data-lane"
-  }
+ { "hospital_id": "INT_CR1", "name": "CIMA Hospital San Jose", "city": "San Jose", "state_or_country": "Costa Rica", "location_type": "international", "safety_score": 9.1, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 12000, "Total Hip Replacement": 13600 } },
+ { "hospital_id": "INT_CR2", "name": "Hospital Clinica Biblica", "city": "San Jose", "state_or_country": "Costa Rica", "location_type": "international", "safety_score": 9.0, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 13200, "Total Hip Replacement": 14400 } },
+ { "hospital_id": "INT_PA1", "name": "Hospital Punta Pacifica", "city": "Panama City", "state_or_country": "Panama", "location_type": "international", "safety_score": 9.0, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 13500, "Total Hip Replacement": 14800 } },
+ { "hospital_id": "INT_DO1", "name": "Centro Medico Punta Cana", "city": "Punta Cana", "state_or_country": "Dominican Republic", "location_type": "international", "safety_score": 8.7, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 10500, "Total Hip Replacement": 11600 } },
+ { "hospital_id": "INT_MX1", "name": "Hospital Angeles Tijuana", "city": "Tijuana", "state_or_country": "Mexico", "location_type": "international", "safety_score": 8.7, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 12500, "Total Hip Replacement": 13000 } },
+ { "hospital_id": "INT_MX2", "name": "Christus Muguerza Alta Especialidad", "city": "Monterrey", "state_or_country": "Mexico", "location_type": "international", "safety_score": 9.0, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 13800, "Total Hip Replacement": 14900 } },
+ { "hospital_id": "INT_CO1", "name": "Fundacion Santa Fe de Bogota", "city": "Bogota", "state_or_country": "Colombia", "location_type": "international", "safety_score": 8.9, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 12000, "Total Hip Replacement": 12500 } },
+ { "hospital_id": "INT_CO2", "name": "Clinica Las Americas", "city": "Medellin", "state_or_country": "Colombia", "location_type": "international", "safety_score": 8.8, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 10800, "Total Hip Replacement": 11700 } },
+ { "hospital_id": "INT_BR1", "name": "Hospital Israelita Albert Einstein", "city": "Sao Paulo", "state_or_country": "Brazil", "location_type": "international", "safety_score": 9.5, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 16500, "Total Hip Replacement": 18000 } },
+ { "hospital_id": "INT_BR2", "name": "Hospital Sirio-Libanes", "city": "Sao Paulo", "state_or_country": "Brazil", "location_type": "international", "safety_score": 9.3, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 15200, "Total Hip Replacement": 16600 } },
+ { "hospital_id": "INT_ES1", "name": "Quironsalud Madrid", "city": "Madrid", "state_or_country": "Spain", "location_type": "international", "safety_score": 9.3, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 14500, "Total Hip Replacement": 15800 } },
+ { "hospital_id": "INT_ES2", "name": "Hospital Universitari Dexeus", "city": "Barcelona", "state_or_country": "Spain", "location_type": "international", "safety_score": 9.2, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 13800, "Total Hip Replacement": 15100 } },
+ { "hospital_id": "INT_PL1", "name": "Medicover Hospital Warsaw", "city": "Warsaw", "state_or_country": "Poland", "location_type": "international", "safety_score": 9.0, "accreditation": "ISO 9001 / EU regulated", "prices": { "Total Knee Replacement": 9800, "Total Hip Replacement": 10600 } },
+ { "hospital_id": "INT_PL2", "name": "Carolina Medical Center", "city": "Warsaw", "state_or_country": "Poland", "location_type": "international", "safety_score": 9.1, "accreditation": "EU regulated, orthopedic specialist", "prices": { "Total Knee Replacement": 10900, "Total Hip Replacement": 11800 } },
+ { "hospital_id": "INT_CZ1", "name": "Na Homolce Hospital", "city": "Prague", "state_or_country": "Czech Republic", "location_type": "international", "safety_score": 9.2, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 10500, "Total Hip Replacement": 11400 } },
+ { "hospital_id": "INT_LT1", "name": "Nordorthopaedics Clinic", "city": "Kaunas", "state_or_country": "Lithuania", "location_type": "international", "safety_score": 8.9, "accreditation": "EU regulated, orthopedic specialist", "prices": { "Total Knee Replacement": 8600, "Total Hip Replacement": 9200 } },
+ { "hospital_id": "INT_TR1", "name": "Acibadem Maslak Hospital", "city": "Istanbul", "state_or_country": "Turkey", "location_type": "international", "safety_score": 9.0, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 11000, "Total Hip Replacement": 12000 } },
+ { "hospital_id": "INT_TR2", "name": "Memorial Sisli Hospital", "city": "Istanbul", "state_or_country": "Turkey", "location_type": "international", "safety_score": 9.1, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 10200, "Total Hip Replacement": 11300 } },
+ { "hospital_id": "INT_TR3", "name": "Anadolu Medical Center", "city": "Kocaeli", "state_or_country": "Turkey", "location_type": "international", "safety_score": 9.2, "accreditation": "JCI accredited, Johns Hopkins affiliate", "prices": { "Total Knee Replacement": 12400, "Total Hip Replacement": 13500 } },
+ { "hospital_id": "INT_JO1", "name": "Jordan Hospital", "city": "Amman", "state_or_country": "Jordan", "location_type": "international", "safety_score": 8.8, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 11200, "Total Hip Replacement": 12100 } },
+ { "hospital_id": "INT_AE1", "name": "Cleveland Clinic Abu Dhabi", "city": "Abu Dhabi", "state_or_country": "United Arab Emirates", "location_type": "international", "safety_score": 9.6, "accreditation": "JCI accredited, Cleveland Clinic network", "prices": { "Total Knee Replacement": 22000, "Total Hip Replacement": 24000 } },
+ { "hospital_id": "INT_AE2", "name": "Mediclinic City Hospital", "city": "Dubai", "state_or_country": "United Arab Emirates", "location_type": "international", "safety_score": 9.3, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 19500, "Total Hip Replacement": 21000 } },
+ { "hospital_id": "INT_IN1", "name": "Apollo Hospitals Chennai", "city": "Chennai", "state_or_country": "India", "location_type": "international", "safety_score": 9.3, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 7500, "Total Hip Replacement": 8500 } },
+ { "hospital_id": "INT_IN2", "name": "Fortis Memorial Research Institute", "city": "Gurugram", "state_or_country": "India", "location_type": "international", "safety_score": 9.2, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 8200, "Total Hip Replacement": 9100 } },
+ { "hospital_id": "INT_IN3", "name": "Manipal Hospitals", "city": "Bengaluru", "state_or_country": "India", "location_type": "international", "safety_score": 9.0, "accreditation": "NABH / JCI accredited", "prices": { "Total Knee Replacement": 6800, "Total Hip Replacement": 7600 } },
+ { "hospital_id": "INT_TH1", "name": "Bumrungrad International Hospital", "city": "Bangkok", "state_or_country": "Thailand", "location_type": "international", "safety_score": 9.4, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 14000, "Total Hip Replacement": 15500 } },
+ { "hospital_id": "INT_TH2", "name": "Bangkok Hospital", "city": "Bangkok", "state_or_country": "Thailand", "location_type": "international", "safety_score": 9.3, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 13200, "Total Hip Replacement": 14600 } },
+ { "hospital_id": "INT_TH3", "name": "Samitivej Sukhumvit Hospital", "city": "Bangkok", "state_or_country": "Thailand", "location_type": "international", "safety_score": 9.2, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 12600, "Total Hip Replacement": 13900 } },
+ { "hospital_id": "INT_MY1", "name": "Prince Court Medical Centre", "city": "Kuala Lumpur", "state_or_country": "Malaysia", "location_type": "international", "safety_score": 9.2, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 9800, "Total Hip Replacement": 10900 } },
+ { "hospital_id": "INT_MY2", "name": "Gleneagles Kuala Lumpur", "city": "Kuala Lumpur", "state_or_country": "Malaysia", "location_type": "international", "safety_score": 9.1, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 11000, "Total Hip Replacement": 12100 } },
+ { "hospital_id": "INT_SG1", "name": "Mount Elizabeth Hospital", "city": "Singapore", "state_or_country": "Singapore", "location_type": "international", "safety_score": 9.7, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 20500, "Total Hip Replacement": 22500 } },
+ { "hospital_id": "INT_SG2", "name": "Gleneagles Hospital Singapore", "city": "Singapore", "state_or_country": "Singapore", "location_type": "international", "safety_score": 9.6, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 18800, "Total Hip Replacement": 20600 } },
+ { "hospital_id": "INT_KR1", "name": "Severance Hospital, Yonsei", "city": "Seoul", "state_or_country": "South Korea", "location_type": "international", "safety_score": 9.5, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 17500, "Total Hip Replacement": 19200 } },
+ { "hospital_id": "INT_KR2", "name": "Asan Medical Center", "city": "Seoul", "state_or_country": "South Korea", "location_type": "international", "safety_score": 9.6, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 16200, "Total Hip Replacement": 17800 } },
+ { "hospital_id": "INT_TW1", "name": "Chang Gung Memorial Hospital", "city": "Taipei", "state_or_country": "Taiwan", "location_type": "international", "safety_score": 9.4, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 13500, "Total Hip Replacement": 14800 } },
+ { "hospital_id": "INT_PH1", "name": "St. Luke's Medical Center", "city": "Manila", "state_or_country": "Philippines", "location_type": "international", "safety_score": 9.0, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 10200, "Total Hip Replacement": 11300 } },
+ { "hospital_id": "INT_PH2", "name": "Makati Medical Center", "city": "Makati", "state_or_country": "Philippines", "location_type": "international", "safety_score": 8.9, "accreditation": "JCI accredited", "prices": { "Total Knee Replacement": 9400, "Total Hip Replacement": 10400 } }
 ]
