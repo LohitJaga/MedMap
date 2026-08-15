@@ -18,8 +18,11 @@ REVISION_COST = {
     "Total Hip Replacement": 78000,
 }
 
+# No true infinity — it isn't JSON-serializable and the uninsured path is the demo default.
+NO_CAP = 10_000_000.0
+
 COVERAGE = {
-    "uninsured": {"coinsurance": 1.0, "oop_max": float("inf"), "self_pay_discount": 0.65},
+    "uninsured": {"coinsurance": 1.0, "oop_max": NO_CAP, "self_pay_discount": 0.65},
     "high_deductible": {"coinsurance": 0.30, "oop_max": 17400.0, "self_pay_discount": 1.0},
     "standard": {"coinsurance": 0.20, "oop_max": 9200.0, "self_pay_discount": 1.0},
 }
@@ -106,6 +109,7 @@ def coverage_terms(coverage="standard", plan_id=None):
             }
     c = dict(COVERAGE.get(coverage, COVERAGE["standard"]))
     c["deductible"] = None
+    c["capped"] = c["oop_max"] < NO_CAP
     c["source"] = f"{coverage} (generic assumption)"
     return c
 
@@ -248,8 +252,14 @@ def cost_distribution(fixed, premium, p_comp, procedure, disruption=0.0, seed=7)
     rng = random.Random(seed)
     uncovered, covered = [], []
 
+    # mu = -sigma^2/2 makes E[multiplier] exactly 1, so the simulated mean loss
+    # matches the mean the premium is priced against. Without this the draw runs
+    # ~16% hot and the premium looks under-priced.
+    sigma = 0.55
+    mu = -(sigma ** 2) / 2
+
     for _ in range(DRAWS):
-        loss = rng.lognormvariate(0, 0.55) * mean_loss if rng.random() < p_comp else 0.0
+        loss = rng.lognormvariate(mu, sigma) * mean_loss if rng.random() < p_comp else 0.0
         uncovered.append(fixed + loss)
         covered.append(fixed + premium + max(0.0, loss - POLICY_LIMIT))
 
