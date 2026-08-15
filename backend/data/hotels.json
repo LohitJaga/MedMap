@@ -1,0 +1,1513 @@
+{
+ "INT_CR1": {
+  "hospital_id": "INT_CR1",
+  "hospital_name": "CIMA Hospital San Jose",
+  "hospital_lat": 9.9396428,
+  "hospital_lon": -84.1443285,
+  "hotels": []
+ },
+ "INT_CR2": {
+  "hospital_id": "INT_CR2",
+  "hospital_name": "Hospital Clinica Biblica",
+  "hospital_lat": 9.9274799,
+  "hospital_lon": -84.0791435,
+  "hotels": [
+   {
+    "name": "Hotel Casa Alfi",
+    "lat": 9.931469,
+    "lon": -84.0777687,
+    "stars": null,
+    "distance_miles": 0.29,
+    "nightly_rate": 90.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Costa Rica",
+    "lat": 9.9309927,
+    "lon": -84.0827829,
+    "stars": null,
+    "distance_miles": 0.35,
+    "nightly_rate": 90.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Doral Hotel",
+    "lat": 9.932864,
+    "lon": -84.0821631,
+    "stars": null,
+    "distance_miles": 0.43,
+    "nightly_rate": 90.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Colonial",
+    "lat": 9.9314651,
+    "lon": -84.07394,
+    "stars": null,
+    "distance_miles": 0.45,
+    "nightly_rate": 90.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "El Maragato",
+    "lat": 9.9341143,
+    "lon": -84.077671,
+    "stars": null,
+    "distance_miles": 0.47,
+    "nightly_rate": 90.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_PA1": {
+  "hospital_id": "INT_PA1",
+  "hospital_name": "Hospital Punta Pacifica",
+  "hospital_lat": 8.9714493,
+  "hospital_lon": -79.5341802,
+  "hotels": [
+   {
+    "name": "Hotel Avila Panama",
+    "lat": 8.9722401,
+    "lon": -79.5355237,
+    "stars": null,
+    "distance_miles": 0.11,
+    "nightly_rate": 95.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Marparaiso",
+    "lat": 8.9698703,
+    "lon": -79.534615,
+    "stars": null,
+    "distance_miles": 0.11,
+    "nightly_rate": 95.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Venecia",
+    "lat": 8.9723305,
+    "lon": -79.5357063,
+    "stars": null,
+    "distance_miles": 0.12,
+    "nightly_rate": 95.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Costa Inn",
+    "lat": 8.973507,
+    "lon": -79.5348338,
+    "stars": null,
+    "distance_miles": 0.15,
+    "nightly_rate": 95.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Centroamericano",
+    "lat": 8.9694578,
+    "lon": -79.5352461,
+    "stars": null,
+    "distance_miles": 0.16,
+    "nightly_rate": 95.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_DO1": {
+  "hospital_id": "INT_DO1",
+  "hospital_name": "Centro Medico Punta Cana",
+  "hospital_lat": 18.556551,
+  "hospital_lon": -68.3691611,
+  "hotels": []
+ },
+ "INT_MX1": {
+  "hospital_id": "INT_MX1",
+  "hospital_name": "Hospital Angeles Tijuana",
+  "hospital_lat": 32.518123,
+  "hospital_lon": -117.0077721,
+  "hotels": []
+ },
+ "INT_MX2": {
+  "hospital_id": "INT_MX2",
+  "hospital_name": "Christus Muguerza Alta Especialidad",
+  "hospital_lat": 25.6802019,
+  "hospital_lon": -100.315258,
+  "hotels": []
+ },
+ "INT_CO1": {
+  "hospital_id": "INT_CO1",
+  "hospital_name": "Fundacion Santa Fe de Bogota",
+  "hospital_lat": 4.6965636,
+  "hospital_lon": -74.032925,
+  "hotels": []
+ },
+ "INT_CO2": {
+  "hospital_id": "INT_CO2",
+  "hospital_name": "Clinica Las Americas",
+  "hospital_lat": 6.2140234,
+  "hospital_lon": -75.5949218,
+  "hotels": [
+   {
+    "name": "Rosaines",
+    "lat": 6.2153699,
+    "lon": -75.5859191,
+    "stars": null,
+    "distance_miles": 0.63,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Oasis de los Bernal",
+    "lat": 6.2193148,
+    "lon": -75.608776,
+    "stars": null,
+    "distance_miles": 1.02,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Alameda de la 10",
+    "lat": 6.2125746,
+    "lon": -75.5745526,
+    "stars": "3",
+    "distance_miles": 1.4,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hostal Los Patios",
+    "lat": 6.2130217,
+    "lon": -75.5729191,
+    "stars": null,
+    "distance_miles": 1.51,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Loyds",
+    "lat": 6.2088747,
+    "lon": -75.5725751,
+    "stars": null,
+    "distance_miles": 1.58,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_BR1": {
+  "hospital_id": "INT_BR1",
+  "hospital_name": "Hospital Israelita Albert Einstein",
+  "hospital_lat": -23.5996128,
+  "hospital_lon": -46.7148798,
+  "hotels": [
+   {
+    "name": "Hotel Transam\u00e9rica Berrini",
+    "lat": -23.6015526,
+    "lon": -46.6942469,
+    "stars": null,
+    "distance_miles": 1.31,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Sheraton S\u00e3o Paulo WTC Hotel",
+    "lat": -23.6089102,
+    "lon": -46.695981,
+    "stars": "5",
+    "distance_miles": 1.36,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Intercity Berrini",
+    "lat": -23.6033719,
+    "lon": -46.693568,
+    "stars": null,
+    "distance_miles": 1.37,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Gran Estanplaza Berrini",
+    "lat": -23.6102192,
+    "lon": -46.6956818,
+    "stars": null,
+    "distance_miles": 1.42,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Park Inn by Radisson Berrini",
+    "lat": -23.6022705,
+    "lon": -46.6926891,
+    "stars": null,
+    "distance_miles": 1.42,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_BR2": {
+  "hospital_id": "INT_BR2",
+  "hospital_name": "Hospital Sirio-Libanes",
+  "hospital_lat": -23.5575141,
+  "hospital_lon": -46.6538225,
+  "hotels": []
+ },
+ "INT_ES1": {
+  "hospital_id": "INT_ES1",
+  "hospital_name": "Quironsalud Madrid",
+  "hospital_lat": 40.4921361,
+  "hospital_lon": -3.6111482,
+  "hotels": []
+ },
+ "INT_ES2": {
+  "hospital_id": "INT_ES2",
+  "hospital_name": "Hospital Universitari Dexeus",
+  "hospital_lat": 41.3848249,
+  "hospital_lon": 2.1257693,
+  "hotels": [
+   {
+    "name": "AC Marriott Victoria Suites",
+    "lat": 41.3893464,
+    "lon": 2.1212331,
+    "stars": null,
+    "distance_miles": 0.39,
+    "nightly_rate": 125.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Casual Colours Barcelona",
+    "lat": 41.3890859,
+    "lon": 2.1429632,
+    "stars": null,
+    "distance_miles": 0.94,
+    "nightly_rate": 125.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hesperia Presidente",
+    "lat": 41.3941217,
+    "lon": 2.1489633,
+    "stars": "4",
+    "distance_miles": 1.36,
+    "nightly_rate": 125.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Ayre Hotel Gran Via",
+    "lat": 41.373363,
+    "lon": 2.1473387,
+    "stars": null,
+    "distance_miles": 1.37,
+    "nightly_rate": 125.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Atenea Calabria",
+    "lat": 41.3809414,
+    "lon": 2.1531619,
+    "stars": null,
+    "distance_miles": 1.45,
+    "nightly_rate": 125.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_PL1": {
+  "hospital_id": "INT_PL1",
+  "hospital_name": "Medicover Hospital Warsaw",
+  "hospital_lat": 52.1550063,
+  "hospital_lon": 21.0779111,
+  "hotels": [
+   {
+    "name": "Platinum Hotel & Residence",
+    "lat": 52.1553064,
+    "lon": 21.0700464,
+    "stars": null,
+    "distance_miles": 0.33,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Wilan\u00f3w",
+    "lat": 52.1712181,
+    "lon": 21.0729133,
+    "stars": null,
+    "distance_miles": 1.14,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Szkoleniowy Ursyn\u00f3w",
+    "lat": 52.1447454,
+    "lon": 21.0283419,
+    "stars": null,
+    "distance_miles": 2.22,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "CKiA \"Mr\u00f3wka\"",
+    "lat": 52.1227053,
+    "lon": 21.0962318,
+    "stars": null,
+    "distance_miles": 2.36,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Arche Hotel Pu\u0142awska Residence",
+    "lat": 52.1508913,
+    "lon": 21.0184924,
+    "stars": "4",
+    "distance_miles": 2.53,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_PL2": {
+  "hospital_id": "INT_PL2",
+  "hospital_name": "Carolina Medical Center",
+  "hospital_lat": 52.1902845,
+  "hospital_lon": 21.0448015,
+  "hotels": [
+   {
+    "name": "Hera",
+    "lat": 52.2073777,
+    "lon": 21.0312335,
+    "stars": null,
+    "distance_miles": 1.31,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Reytan",
+    "lat": 52.2080428,
+    "lon": 21.0202034,
+    "stars": "3",
+    "distance_miles": 1.61,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel \u0141azienkowski",
+    "lat": 52.2147882,
+    "lon": 21.0422621,
+    "stars": null,
+    "distance_miles": 1.7,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Wilan\u00f3w",
+    "lat": 52.1712181,
+    "lon": 21.0729133,
+    "stars": null,
+    "distance_miles": 1.78,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Robotniczy",
+    "lat": 52.1938661,
+    "lon": 21.0888571,
+    "stars": null,
+    "distance_miles": 1.88,
+    "nightly_rate": 78.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_CZ1": {
+  "hospital_id": "INT_CZ1",
+  "hospital_name": "Na Homolce Hospital",
+  "hospital_lat": 50.0874654,
+  "hospital_lon": 14.4212535,
+  "hotels": [
+   {
+    "name": "Old Prague Hotel",
+    "lat": 50.0838369,
+    "lon": 14.4193317,
+    "stars": null,
+    "distance_miles": 0.26,
+    "nightly_rate": 82.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "The Mozart Prague",
+    "lat": 50.0846158,
+    "lon": 14.4140872,
+    "stars": "5",
+    "distance_miles": 0.37,
+    "nightly_rate": 82.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "U dvou zlat\u00fdch kl\u00ed\u010d\u016f",
+    "lat": 50.0805653,
+    "lon": 14.4195866,
+    "stars": null,
+    "distance_miles": 0.48,
+    "nightly_rate": 82.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Boutique Hotel Klarov",
+    "lat": 50.0911143,
+    "lon": 14.4108239,
+    "stars": "4",
+    "distance_miles": 0.53,
+    "nightly_rate": 82.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "NH Collection Prague Carlo IV",
+    "lat": 50.0863078,
+    "lon": 14.433845,
+    "stars": "5",
+    "distance_miles": 0.56,
+    "nightly_rate": 82.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_LT1": {
+  "hospital_id": "INT_LT1",
+  "hospital_name": "Nordorthopaedics Clinic",
+  "hospital_lat": 54.9132995,
+  "hospital_lon": 23.9573162,
+  "hotels": [
+   {
+    "name": "Hermis",
+    "lat": 54.9272196,
+    "lon": 23.9710494,
+    "stars": "4",
+    "distance_miles": 1.11,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Park Inn by Radisson Kaunas",
+    "lat": 54.8984714,
+    "lon": 23.9197076,
+    "stars": null,
+    "distance_miles": 1.81,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Centre Hotel",
+    "lat": 54.9025761,
+    "lon": 23.9154844,
+    "stars": null,
+    "distance_miles": 1.82,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Very Bad Hotel",
+    "lat": 54.9078759,
+    "lon": 23.9082529,
+    "stars": null,
+    "distance_miles": 1.98,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "ibis Kaunas Centre",
+    "lat": 54.8895954,
+    "lon": 23.9271396,
+    "stars": null,
+    "distance_miles": 2.03,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_TR1": {
+  "hospital_id": "INT_TR1",
+  "hospital_name": "Acibadem Maslak Hospital",
+  "hospital_lat": 41.1275187,
+  "hospital_lon": 29.0250794,
+  "hotels": [
+   {
+    "name": "Tarabya Oteli",
+    "lat": 41.139841,
+    "lon": 29.0571591,
+    "stars": null,
+    "distance_miles": 1.87,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Radisson Blu",
+    "lat": 41.1087098,
+    "lon": 28.9865716,
+    "stars": null,
+    "distance_miles": 2.39,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "A'ija Hotel",
+    "lat": 41.1030664,
+    "lon": 29.0669125,
+    "stars": null,
+    "distance_miles": 2.76,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Bilek Hotel",
+    "lat": 41.0896345,
+    "lon": 29.0054271,
+    "stars": "4",
+    "distance_miles": 2.81,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Leta Sandalye Hotel Cafe Restaurant",
+    "lat": 41.0851354,
+    "lon": 29.008413,
+    "stars": null,
+    "distance_miles": 3.05,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_TR2": {
+  "hospital_id": "INT_TR2",
+  "hospital_name": "Memorial Sisli Hospital",
+  "hospital_lat": 41.0616496,
+  "hospital_lon": 28.9726951,
+  "hotels": [
+   {
+    "name": "Tempo Hotel",
+    "lat": 41.0675784,
+    "lon": 28.9739333,
+    "stars": null,
+    "distance_miles": 0.41,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "La Piano",
+    "lat": 41.0501628,
+    "lon": 28.9880406,
+    "stars": null,
+    "distance_miles": 1.13,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "5 Boutique Hotel",
+    "lat": 41.0471663,
+    "lon": 28.9863054,
+    "stars": null,
+    "distance_miles": 1.23,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Divan Hotel",
+    "lat": 41.0411019,
+    "lon": 28.9870408,
+    "stars": null,
+    "distance_miles": 1.6,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Point Hotel",
+    "lat": 41.040702,
+    "lon": 28.9858378,
+    "stars": null,
+    "distance_miles": 1.6,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_TR3": {
+  "hospital_id": "INT_TR3",
+  "hospital_name": "Anadolu Medical Center",
+  "hospital_lat": 40.8216536,
+  "hospital_lon": 29.9507184,
+  "hotels": [
+   {
+    "name": "Azkoroz Otel",
+    "lat": 40.7917309,
+    "lon": 29.9787995,
+    "stars": null,
+    "distance_miles": 2.54,
+    "nightly_rate": 80.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_JO1": {
+  "hospital_id": "INT_JO1",
+  "hospital_name": "Jordan Hospital",
+  "hospital_lat": 31.9606047,
+  "hospital_lon": 35.8997349,
+  "hotels": [
+   {
+    "name": "Amman West Hotel",
+    "lat": 31.9578457,
+    "lon": 35.8998672,
+    "stars": null,
+    "distance_miles": 0.19,
+    "nightly_rate": 72.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Cameo Hotel",
+    "lat": 31.9576136,
+    "lon": 35.8999798,
+    "stars": null,
+    "distance_miles": 0.21,
+    "nightly_rate": 72.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\u0627\u0644\u0642\u0635\u0631",
+    "lat": 31.9735338,
+    "lon": 35.8982324,
+    "stars": null,
+    "distance_miles": 0.9,
+    "nightly_rate": 72.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\u0636\u0631\u0627\u063a\u0645\u0629 \u0634\u0642\u0642 \u0641\u0646\u062f\u0642\u064a\u0647",
+    "lat": 31.965386,
+    "lon": 35.8851403,
+    "stars": null,
+    "distance_miles": 0.92,
+    "nightly_rate": 72.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\u0641\u0646\u062f\u0642 \u0634\u0627\u0645",
+    "lat": 31.9754111,
+    "lon": 35.8946921,
+    "stars": null,
+    "distance_miles": 1.06,
+    "nightly_rate": 72.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_AE1": {
+  "hospital_id": "INT_AE1",
+  "hospital_name": "Cleveland Clinic Abu Dhabi",
+  "hospital_lat": 24.4970572,
+  "hospital_lon": 54.3878835,
+  "hotels": [
+   {
+    "name": "Four Seasons Al Maryah Island",
+    "lat": 24.5030511,
+    "lon": 54.3880736,
+    "stars": null,
+    "distance_miles": 0.41,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Oriental Hotel Apartments",
+    "lat": 24.4973671,
+    "lon": 54.3786199,
+    "stars": null,
+    "distance_miles": 0.58,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Kingsgate",
+    "lat": 24.4916208,
+    "lon": 54.3797505,
+    "stars": null,
+    "distance_miles": 0.63,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Ramada Downtown / Abu Dhabi",
+    "lat": 24.4907373,
+    "lon": 54.3800971,
+    "stars": null,
+    "distance_miles": 0.66,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Cristal Salam",
+    "lat": 24.4901161,
+    "lon": 54.3798571,
+    "stars": null,
+    "distance_miles": 0.7,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_AE2": {
+  "hospital_id": "INT_AE2",
+  "hospital_name": "Mediclinic City Hospital",
+  "hospital_lat": 25.2303746,
+  "hospital_lon": 55.3227651,
+  "hotels": [
+   {
+    "name": "\u0631\u0627\u0641\u0644\u0632 \u062f\u0628\u064a",
+    "lat": 25.2279299,
+    "lon": 55.3204805,
+    "stars": "5",
+    "distance_miles": 0.22,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "intercontinental Suites",
+    "lat": 25.2318304,
+    "lon": 55.3471422,
+    "stars": null,
+    "distance_miles": 1.53,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Flora Park Hotel Apartments",
+    "lat": 25.2540462,
+    "lon": 55.3295259,
+    "stars": null,
+    "distance_miles": 1.69,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\u0641\u0646\u062f\u0642 \u0645\u0648\u0633\u0643\u0648",
+    "lat": 25.259478,
+    "lon": 55.3229291,
+    "stars": null,
+    "distance_miles": 2.01,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Emirates Concord Hotel",
+    "lat": 25.2600166,
+    "lon": 55.3210768,
+    "stars": null,
+    "distance_miles": 2.05,
+    "nightly_rate": 160.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_IN1": {
+  "hospital_id": "INT_IN1",
+  "hospital_name": "Apollo Hospitals Chennai",
+  "hospital_lat": 13.0677233,
+  "hospital_lon": 80.2050055,
+  "hotels": [
+   {
+    "name": "Emirates Residency",
+    "lat": 13.0730295,
+    "lon": 80.2008249,
+    "stars": null,
+    "distance_miles": 0.46,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Green Park - Chennai",
+    "lat": 13.051048,
+    "lon": 80.2081917,
+    "stars": null,
+    "distance_miles": 1.17,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Sridevi Park",
+    "lat": 13.0453722,
+    "lon": 80.2330855,
+    "stars": null,
+    "distance_miles": 2.44,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "grand sweet and snacks (Amritham Restaurant)",
+    "lat": 13.0470653,
+    "lon": 80.2351498,
+    "stars": null,
+    "distance_miles": 2.48,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Aruna Inn",
+    "lat": 13.066127,
+    "lon": 80.2422523,
+    "stars": null,
+    "distance_miles": 2.51,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_IN2": {
+  "hospital_id": "INT_IN2",
+  "hospital_name": "Fortis Memorial Research Institute",
+  "hospital_lat": 28.4571214,
+  "hospital_lon": 77.072768,
+  "hotels": [
+   {
+    "name": "Ramada by Wyndham",
+    "lat": 28.4498488,
+    "lon": 77.0710475,
+    "stars": null,
+    "distance_miles": 0.51,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Vista Wood",
+    "lat": 28.4494947,
+    "lon": 77.0642891,
+    "stars": null,
+    "distance_miles": 0.74,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Leon Tree Premier II",
+    "lat": 28.4675847,
+    "lon": 77.0652242,
+    "stars": null,
+    "distance_miles": 0.86,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Lemon Tree",
+    "lat": 28.4679809,
+    "lon": 77.0648274,
+    "stars": null,
+    "distance_miles": 0.89,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Quality inn",
+    "lat": 28.4691571,
+    "lon": 77.0635519,
+    "stars": null,
+    "distance_miles": 1.0,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_IN3": {
+  "hospital_id": "INT_IN3",
+  "hospital_name": "Manipal Hospitals",
+  "hospital_lat": 12.9582593,
+  "hospital_lon": 77.7453915,
+  "hotels": [
+   {
+    "name": "Super Hotel O",
+    "lat": 12.9602164,
+    "lon": 77.7218029,
+    "stars": null,
+    "distance_miles": 1.59,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Sri Udupi Parkk",
+    "lat": 12.9824346,
+    "lon": 77.7483784,
+    "stars": null,
+    "distance_miles": 1.68,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Royal Blooms",
+    "lat": 12.9843483,
+    "lon": 77.7498546,
+    "stars": null,
+    "distance_miles": 1.83,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "En Amma",
+    "lat": 12.9604413,
+    "lon": 77.7181435,
+    "stars": null,
+    "distance_miles": 1.84,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Astra Hotels",
+    "lat": 12.9773169,
+    "lon": 77.7250751,
+    "stars": null,
+    "distance_miles": 1.9,
+    "nightly_rate": 65.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_TH1": {
+  "hospital_id": "INT_TH1",
+  "hospital_name": "Bumrungrad International Hospital",
+  "hospital_lat": 13.7464113,
+  "hospital_lon": 100.5524335,
+  "hotels": [
+   {
+    "name": "Fortuna",
+    "lat": 13.7425054,
+    "lon": 100.5541598,
+    "stars": null,
+    "distance_miles": 0.29,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Dynasty Inn Bangkok Hotel",
+    "lat": 13.7410823,
+    "lon": 100.5530873,
+    "stars": null,
+    "distance_miles": 0.37,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "On8 Sukhumvit",
+    "lat": 13.7399988,
+    "lon": 100.5558556,
+    "stars": null,
+    "distance_miles": 0.5,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Royal Express",
+    "lat": 13.7396719,
+    "lon": 100.5558383,
+    "stars": null,
+    "distance_miles": 0.52,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Stable Lodge",
+    "lat": 13.7383661,
+    "lon": 100.5561563,
+    "stars": null,
+    "distance_miles": 0.61,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_TH2": {
+  "hospital_id": "INT_TH2",
+  "hospital_name": "Bangkok Hospital",
+  "hospital_lat": 13.7499099,
+  "hospital_lon": 100.5836619,
+  "hotels": [
+   {
+    "name": "AVANI Atrium Bangkok",
+    "lat": 13.7469266,
+    "lon": 100.5698932,
+    "stars": null,
+    "distance_miles": 0.95,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "41 Suite Bangkok Hotel",
+    "lat": 13.7295136,
+    "lon": 100.5724061,
+    "stars": null,
+    "distance_miles": 1.6,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Wow Bangkok",
+    "lat": 13.7345806,
+    "lon": 100.5658464,
+    "stars": null,
+    "distance_miles": 1.6,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "iCheck Inn Regency Sukhumvit",
+    "lat": 13.7295574,
+    "lon": 100.5719924,
+    "stars": null,
+    "distance_miles": 1.61,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "24 Inn",
+    "lat": 13.7301766,
+    "lon": 100.5698459,
+    "stars": null,
+    "distance_miles": 1.65,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_TH3": {
+  "hospital_id": "INT_TH3",
+  "hospital_name": "Samitivej Sukhumvit Hospital",
+  "hospital_lat": 13.7348588,
+  "hospital_lon": 100.5765266,
+  "hotels": [
+   {
+    "name": "41 Suite Bangkok Hotel",
+    "lat": 13.7295136,
+    "lon": 100.5724061,
+    "stars": null,
+    "distance_miles": 0.46,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "iCheck Inn Regency Sukhumvit",
+    "lat": 13.7295574,
+    "lon": 100.5719924,
+    "stars": null,
+    "distance_miles": 0.48,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "24 Inn",
+    "lat": 13.7301766,
+    "lon": 100.5698459,
+    "stars": null,
+    "distance_miles": 0.55,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Wow Bangkok",
+    "lat": 13.7345806,
+    "lon": 100.5658464,
+    "stars": null,
+    "distance_miles": 0.72,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Marriott Executive Apartments Bangkok, Sukhumvit Thonglor",
+    "lat": 13.7233007,
+    "lon": 100.580546,
+    "stars": null,
+    "distance_miles": 0.84,
+    "nightly_rate": 110.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_MY1": {
+  "hospital_id": "INT_MY1",
+  "hospital_name": "Prince Court Medical Centre",
+  "hospital_lat": 3.1490035,
+  "hospital_lon": 101.7213527,
+  "hotels": [
+   {
+    "name": "Royale Chulan Kuala Lumpur",
+    "lat": 3.1496976,
+    "lon": 101.7169644,
+    "stars": "5",
+    "distance_miles": 0.31,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Pullman",
+    "lat": 3.1502588,
+    "lon": 101.7144661,
+    "stars": "5",
+    "distance_miles": 0.48,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Sempurna",
+    "lat": 3.1453392,
+    "lon": 101.7148947,
+    "stars": null,
+    "distance_miles": 0.51,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "MiCasa All Suite Hotel",
+    "lat": 3.1568759,
+    "lon": 101.722858,
+    "stars": null,
+    "distance_miles": 0.55,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Bintang Fairlane Residences",
+    "lat": 3.1450332,
+    "lon": 101.7126797,
+    "stars": null,
+    "distance_miles": 0.66,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_MY2": {
+  "hospital_id": "INT_MY2",
+  "hospital_name": "Gleneagles Kuala Lumpur",
+  "hospital_lat": 3.1619033,
+  "hospital_lon": 101.7391744,
+  "hotels": [
+   {
+    "name": "Oakwood",
+    "lat": 3.1609525,
+    "lon": 101.7289049,
+    "stars": null,
+    "distance_miles": 0.71,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Flamingo hotel by the lake",
+    "lat": 3.1626298,
+    "lon": 101.7510741,
+    "stars": "3",
+    "distance_miles": 0.82,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "O'Wen Hotel",
+    "lat": 3.1505778,
+    "lon": 101.7480436,
+    "stars": null,
+    "distance_miles": 0.99,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "MiCasa All Suite Hotel",
+    "lat": 3.1568759,
+    "lon": 101.722858,
+    "stars": null,
+    "distance_miles": 1.18,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Royale Chulan Kuala Lumpur",
+    "lat": 3.1496976,
+    "lon": 101.7169644,
+    "stars": "5",
+    "distance_miles": 1.75,
+    "nightly_rate": 70.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_SG1": {
+  "hospital_id": "INT_SG1",
+  "hospital_name": "Mount Elizabeth Hospital",
+  "hospital_lat": 1.3051962,
+  "hospital_lon": 103.8355363,
+  "hotels": [
+   {
+    "name": "Hotel Jen (Orchardgateway)",
+    "lat": 1.3007018,
+    "lon": 103.8388997,
+    "stars": "4",
+    "distance_miles": 0.39,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Four Seasons Hotel",
+    "lat": 1.3052102,
+    "lon": 103.8286527,
+    "stars": null,
+    "distance_miles": 0.48,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Supreme",
+    "lat": 1.3013394,
+    "lon": 103.8424247,
+    "stars": null,
+    "distance_miles": 0.55,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Lloyd's Inn",
+    "lat": 1.2972636,
+    "lon": 103.8403659,
+    "stars": null,
+    "distance_miles": 0.64,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "JEN Singapore Tanglin",
+    "lat": 1.3042705,
+    "lon": 103.8239124,
+    "stars": null,
+    "distance_miles": 0.81,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_SG2": {
+  "hospital_id": "INT_SG2",
+  "hospital_name": "Gleneagles Hospital Singapore",
+  "hospital_lat": 1.3073293,
+  "hospital_lon": 103.8198385,
+  "hotels": [
+   {
+    "name": "JEN Singapore Tanglin",
+    "lat": 1.3042705,
+    "lon": 103.8239124,
+    "stars": null,
+    "distance_miles": 0.35,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Orchard RendezVous Hotel",
+    "lat": 1.3065524,
+    "lon": 103.8278105,
+    "stars": null,
+    "distance_miles": 0.55,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Orchard Hotel Singapore",
+    "lat": 1.3076686,
+    "lon": 103.8281644,
+    "stars": null,
+    "distance_miles": 0.58,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Four Seasons Hotel",
+    "lat": 1.3052102,
+    "lon": 103.8286527,
+    "stars": null,
+    "distance_miles": 0.63,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Hotel Jen (Orchardgateway)",
+    "lat": 1.3007018,
+    "lon": 103.8388997,
+    "stars": "4",
+    "distance_miles": 1.39,
+    "nightly_rate": 180.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_KR1": {
+  "hospital_id": "INT_KR1",
+  "hospital_name": "Severance Hospital, Yonsei",
+  "hospital_lat": 37.5622617,
+  "hospital_lon": 126.9403921,
+  "hotels": [
+   {
+    "name": "\ub81b\uce20\uace0\ub9ac\uc870\ud2b8",
+    "lat": 37.5558439,
+    "lon": 126.92286,
+    "stars": null,
+    "distance_miles": 1.06,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\ud638\ud154\ube44\ucf00\uc774\ub2f7\ucef4",
+    "lat": 37.5625858,
+    "lon": 126.920394,
+    "stars": null,
+    "distance_miles": 1.1,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\uc77c\uc131\ucf58\ub3c4\ubbf8\ub2c8\uc5c4",
+    "lat": 37.545515,
+    "lon": 126.944581,
+    "stars": null,
+    "distance_miles": 1.18,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\uba85\uc131\ucf58\ub3c4",
+    "lat": 37.5440587,
+    "lon": 126.9528662,
+    "stars": null,
+    "distance_miles": 1.43,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\uc720\uc591\uad00\uad11\ud638\ud154",
+    "lat": 37.553599,
+    "lon": 126.91677,
+    "stars": null,
+    "distance_miles": 1.43,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_KR2": {
+  "hospital_id": "INT_KR2",
+  "hospital_name": "Asan Medical Center",
+  "hospital_lat": 37.5263041,
+  "hospital_lon": 127.1096013,
+  "hotels": [
+   {
+    "name": "\ud638\ud154\ube44\uc5d4\ub354\ube14\uc720",
+    "lat": 37.515675,
+    "lon": 127.109595,
+    "stars": null,
+    "distance_miles": 0.73,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\ud638\ud154\ube44\uc5e0\ub354\ube14\uc720",
+    "lat": 37.515675,
+    "lon": 127.109595,
+    "stars": null,
+    "distance_miles": 0.73,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\ud1b0\uc9c0\ud638\ud154",
+    "lat": 37.515575,
+    "lon": 127.109471,
+    "stars": null,
+    "distance_miles": 0.74,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\ub77c\uc790\ud638\ud154",
+    "lat": 37.515403,
+    "lon": 127.10815,
+    "stars": null,
+    "distance_miles": 0.76,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "\ud638\ud154\uc250\ub974\ube4c",
+    "lat": 37.515375,
+    "lon": 127.109225,
+    "stars": null,
+    "distance_miles": 0.76,
+    "nightly_rate": 130.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ },
+ "INT_TW1": {
+  "hospital_id": "INT_TW1",
+  "hospital_name": "Chang Gung Memorial Hospital",
+  "hospital_lat": 25.0565901,
+  "hospital_lon": 121.549327,
+  "hotels": []
+ },
+ "INT_PH1": {
+  "hospital_id": "INT_PH1",
+  "hospital_name": "St. Luke's Medical Center",
+  "hospital_lat": 14.6230767,
+  "hospital_lon": 121.0231776,
+  "hotels": []
+ },
+ "INT_PH2": {
+  "hospital_id": "INT_PH2",
+  "hospital_name": "Makati Medical Center",
+  "hospital_lat": 14.5593307,
+  "hospital_lon": 121.0147968,
+  "hotels": [
+   {
+    "name": "Tiara Oriental Hotel & Restaurant",
+    "lat": 14.5614877,
+    "lon": 121.0132926,
+    "stars": null,
+    "distance_miles": 0.18,
+    "nightly_rate": 62.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Spaces Hotel",
+    "lat": 14.555044,
+    "lon": 121.0145153,
+    "stars": null,
+    "distance_miles": 0.3,
+    "nightly_rate": 62.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "Franchise One Hotel",
+    "lat": 14.5533669,
+    "lon": 121.0133384,
+    "stars": null,
+    "distance_miles": 0.42,
+    "nightly_rate": 62.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "The E Hotel Makati",
+    "lat": 14.5507513,
+    "lon": 121.0198996,
+    "stars": null,
+    "distance_miles": 0.68,
+    "nightly_rate": 62.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   },
+   {
+    "name": "The Copa",
+    "lat": 14.5506878,
+    "lon": 121.0203649,
+    "stars": null,
+    "distance_miles": 0.7,
+    "nightly_rate": 62.0,
+    "rate_basis": "destination mid-range average; OSM carries no pricing"
+   }
+  ]
+ }
+}
