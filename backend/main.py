@@ -36,6 +36,9 @@ class DomesticRequest(BaseModel):
 class InternationalRequest(BaseModel):
     session_id: str
     procedure_name: str
+    # Optional overrides so this endpoint works standalone, without /intake first.
+    coverage: str | None = None
+    user_deductible: float | None = None
 
 
 class CheckoutRequest(BaseModel):
@@ -44,8 +47,11 @@ class CheckoutRequest(BaseModel):
 
 
 def session(sid):
+    # Defaults to uninsured: that is the population this product exists for, and it
+    # keeps a frontend that skips /intake from silently comparing against the wrong
+    # baseline. Any explicit coverage on a request overrides it.
     return SESSIONS.setdefault(
-        sid, {"facts": [], "deductible": 5000.0, "coverage": "standard", "quotes": {}}
+        sid, {"facts": [], "deductible": 5000.0, "coverage": "uninsured", "quotes": {}}
     )
 
 
@@ -163,14 +169,29 @@ def quote_domestic(req: DomesticRequest):
 def quote_international(req: InternationalRequest):
     try:
         s = session(req.session_id)
+        if req.coverage:
+            s["coverage"] = req.coverage
+        if req.user_deductible is not None:
+            s["deductible"] = req.user_deductible
+        # If /quote/domestic hasn't run, derive the baseline now rather than
+        # comparing against a stale default.
+        baseline = s.get("baseline")
+        if baseline is None:
+            dom, _ = pricing.domestic_options(
+                req.procedure_name, s["deductible"], s["coverage"], s["facts"], limit=1
+            )
+            baseline = dom[0]["expected_cost"] if dom else None
+            s["baseline"] = baseline
         options, risk_factor, drivers = pricing.international_options(
-            req.procedure_name, s["deductible"], s["facts"], s["coverage"], s.get("baseline")
+            req.procedure_name, s["deductible"], s["facts"], s["coverage"], baseline
         )
         if not options:
             return stubs.international()
         s["quotes"] = {o["hospital_id"]: o for o in options}
         return {
             "options": options,
+            "coverage": s["coverage"],
+            "us_baseline_expected_cost": baseline,
             "risk_factor": risk_factor,
             "risk_drivers": [d["fact"] for d in drivers],
         }
