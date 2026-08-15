@@ -30,6 +30,7 @@ class DomesticRequest(BaseModel):
     user_deductible: float
     coverage: str = "standard"
     state: str | None = None
+    plan_id: str | None = None
 
 
 class InternationalRequest(BaseModel):
@@ -76,22 +77,40 @@ def procedures():
     ]}
 
 
+@app.get("/plans")
+def plan_search(state: str | None = None, q: str | None = None, limit: int = 50):
+    """Real ACA marketplace plans — feeds the plan dropdown.
+
+    healthcare.gov covers 30 federal-marketplace states. State-run exchanges
+    (NY, CA, and others) are not in this dataset.
+    """
+    try:
+        found = pricing.find_plans(state, q, limit)
+        return {"plans": found, "count": len(found),
+                "source": "CMS Plan Attributes PUF, PY2026"}
+    except Exception:
+        return {"plans": [], "count": 0, "degraded": True}
+
+
 @app.post("/quote/domestic")
 def quote_domestic(req: DomesticRequest):
     try:
         s = session(req.session_id)
         options, total = pricing.domestic_options(
-            req.procedure_name, req.user_deductible, req.coverage, s["facts"], req.state
+            req.procedure_name, req.user_deductible, req.coverage, s["facts"], req.state,
+            plan_id=req.plan_id,
         )
         if not options:
             return stubs.domestic()
         s["deductible"] = req.user_deductible
         s["coverage"] = req.coverage
+        s["plan_id"] = req.plan_id
         s["procedure"] = req.procedure_name
         s["baseline"] = options[0]["expected_cost"]
         return {
             "options": options,
             "coverage": req.coverage,
+            "plan": pricing.coverage_terms(req.coverage, req.plan_id),
             "hospitals_considered": total,
             "price_spread": pricing.price_spread(req.procedure_name),
             "rank_inversion": pricing.rank_inversion(options),

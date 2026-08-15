@@ -66,8 +66,54 @@ def destinations():
     return {d["country"]: d for d in _load("destinations.json")}
 
 
-def out_of_pocket(base_cost, deductible_remaining, coverage="standard"):
-    c = COVERAGE.get(coverage, COVERAGE["standard"])
+def plans():
+    return _load("plans.json")
+
+
+def find_plans(state=None, query=None, limit=50):
+    out = []
+    q = (query or "").lower()
+    for p in plans():
+        if state and p["state"] != state:
+            continue
+        if q and q not in (p["name"] or "").lower() and q not in (p["issuer"] or "").lower():
+            continue
+        out.append(p)
+        if len(out) >= limit:
+            break
+    return out
+
+
+def get_plan(plan_id):
+    for p in plans():
+        if p["plan_id"] == plan_id:
+            return p
+    return None
+
+
+def coverage_terms(coverage="standard", plan_id=None):
+    """A real ACA plan's own deductible / OOP max / coinsurance when we have one,
+    otherwise the generic bucket."""
+    if plan_id:
+        p = get_plan(plan_id)
+        if p:
+            return {
+                "coinsurance": p["coinsurance"],
+                "oop_max": p["oop_max"],
+                "deductible": p["deductible"],
+                "self_pay_discount": 1.0,
+                "source": f"{p['issuer']} — {p['name']} ({p['metal']})",
+            }
+    c = dict(COVERAGE.get(coverage, COVERAGE["standard"]))
+    c["deductible"] = None
+    c["source"] = f"{coverage} (generic assumption)"
+    return c
+
+
+def out_of_pocket(base_cost, deductible_remaining, coverage="standard", plan_id=None):
+    c = coverage_terms(coverage, plan_id)
+    if c.get("deductible") is not None:
+        deductible_remaining = min(deductible_remaining, c["deductible"])
     billed = base_cost * c["self_pay_discount"]
     if billed <= deductible_remaining:
         return round(billed, 2)
@@ -108,7 +154,8 @@ def warranty_cost(procedure, p_comp, disruption=0.0):
     return round(p_comp * covered * (1 + LOAD_FACTOR), 2)
 
 
-def domestic_options(procedure, deductible, coverage="standard", facts=(), state=None, limit=40):
+def domestic_options(procedure, deductible, coverage="standard", facts=(), state=None,
+                     limit=40, plan_id=None):
     """Every US hospital with both a real price and a real CMS complication rate.
 
     Sorted by EXPECTED cost, not sticker price. The ranking usually inverts.
@@ -125,8 +172,8 @@ def domestic_options(procedure, deductible, coverage="standard", facts=(), state
             continue
 
         p_comp = min(0.6, h["complication_rate"] * risk_factor)
-        oop = out_of_pocket(base, deductible, coverage)
-        revision_oop = out_of_pocket(revision, max(0.0, deductible - base), coverage)
+        oop = out_of_pocket(base, deductible, coverage, plan_id)
+        revision_oop = out_of_pocket(revision, max(0.0, deductible - base), coverage, plan_id)
 
         out.append({
             "hospital_id": h["hospital_id"],
