@@ -28,6 +28,7 @@ class DomesticRequest(BaseModel):
     procedure_name: str
     user_deductible: float
     coverage: str = "standard"
+    state: str | None = None
 
 
 class InternationalRequest(BaseModel):
@@ -67,32 +68,32 @@ def intake(req: IntakeRequest):
 
 @app.get("/procedures")
 def procedures():
-    names = []
-    for h in pricing.hospitals():
-        for p in h["prices"]:
-            if p not in names:
-                names.append(p)
-    return {"procedures": [{"procedure_name": n} for n in names]}
+    return {"procedures": [
+        {"procedure_name": "Total Knee Replacement", "category": "orthopedic"},
+        {"procedure_name": "Total Hip Replacement", "category": "orthopedic"},
+    ]}
 
 
 @app.post("/quote/domestic")
 def quote_domestic(req: DomesticRequest):
     try:
-        options, filtered = pricing.domestic_options(
-            req.procedure_name, req.user_deductible, req.coverage
+        s = session(req.session_id)
+        options, total = pricing.domestic_options(
+            req.procedure_name, req.user_deductible, req.coverage, s["facts"], req.state
         )
         if not options:
             return stubs.domestic()
-        s = session(req.session_id)
         s["deductible"] = req.user_deductible
         s["coverage"] = req.coverage
         s["procedure"] = req.procedure_name
+        s["baseline"] = options[0]["expected_cost"]
         return {
             "options": options,
             "coverage": req.coverage,
-            "filtered_count": filtered,
-            "filter_note": f"{filtered} hospitals hidden — safety grade below "
-                           f"{pricing.SAFETY_THRESHOLD} (Leapfrog)",
+            "hospitals_considered": total,
+            "price_spread": pricing.price_spread(req.procedure_name),
+            "rank_inversion": pricing.rank_inversion(options),
+            "source": "CMS Medicare Inpatient Hospitals + Hospital Complications and Deaths",
         }
     except Exception:
         return stubs.domestic()
@@ -103,7 +104,7 @@ def quote_international(req: InternationalRequest):
     try:
         s = session(req.session_id)
         options, risk_factor, drivers = pricing.international_options(
-            req.procedure_name, s["deductible"], s["facts"], s["coverage"]
+            req.procedure_name, s["deductible"], s["facts"], s["coverage"], s.get("baseline")
         )
         if not options:
             return stubs.international()
