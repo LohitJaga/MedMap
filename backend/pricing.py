@@ -225,7 +225,13 @@ def real_price(hospital, procedure):
         # procedure compares to its charge for a knee, so procedure mix is kept.
         knee = hospital["prices"].get("Total Knee Replacement")
         ratio = (billed / knee) if (billed and knee) else 1.0
-        return round(paid * COMMERCIAL_MULTIPLE * ratio, 2), billed
+        est = paid * COMMERCIAL_MULTIPLE * ratio
+        # A negotiated rate can never exceed the charge it is negotiated down
+        # from. Where the estimate overshoots, fall back to a discount off the
+        # billed charge instead.
+        if billed and est > billed:
+            est = billed * 0.72
+        return round(est, 2), billed
     return billed, billed
 
 
