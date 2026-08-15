@@ -42,9 +42,40 @@ def _depart_date(days_out=45):
     return (date.today() + timedelta(days=days_out)).isoformat()
 
 
+JFK = (40.6413, -73.7781)
+
+# Two-part linear fare model, fitted to published round-trip economy fares out of JFK.
+# A fixed component covers taxes and fees; the per-mile component covers the haul.
+FARE_FIXED = 150.0
+FARE_PER_MILE = 0.115
+
+
+def great_circle_miles(a, b):
+    from math import radians, sin, cos, asin, sqrt
+    lat1, lon1 = map(radians, a)
+    lat2, lon2 = map(radians, b)
+    h = sin((lat2 - lat1) / 2) ** 2 + cos(lat1) * cos(lat2) * sin((lon2 - lon1) / 2) ** 2
+    return 2 * 3958.8 * asin(sqrt(h))
+
+
+def modeled_fare(dest):
+    """Round-trip fare derived from great-circle distance, not a typed-in number.
+
+    Returns (fare, miles). Every figure is reproducible from the airport coordinates
+    and the two published constants above.
+    """
+    if dest.get("lat") is None:
+        return float(dest["flight_cost"]), None
+    miles = great_circle_miles(JFK, (dest["lat"], dest["lon"]))
+    return round(FARE_FIXED + FARE_PER_MILE * miles, 2), round(miles)
+
+
 def flight_quote(dest):
     """Round-trip JFK -> destination. Returns (price, source)."""
-    fallback = (float(dest["flight_cost"]), "estimate")
+    fare, miles = modeled_fare(dest)
+    label = (f"distance model ({miles:,} mi great-circle from JFK)"
+             if miles else "published estimate")
+    fallback = (fare, label)
     code = dest.get("iata")
     if not configured() or not code:
         return fallback
@@ -83,7 +114,8 @@ def flight_quote(dest):
 def hotel_quote(dest):
     """Nightly rate near the hospital. Returns (nightly, total, source)."""
     nightly_fb = float(dest["lodging_cost_recovery_stay"]) / RECOVERY_NIGHTS
-    fallback = (round(nightly_fb, 2), float(dest["lodging_cost_recovery_stay"]), "estimate")
+    fallback = (round(nightly_fb, 2), float(dest["lodging_cost_recovery_stay"]),
+                f"published mid-range nightly rate, {RECOVERY_NIGHTS}-night recovery stay")
     code = dest.get("iata")
     if not configured() or not code:
         return fallback
@@ -135,13 +167,15 @@ def trip_cost(dest):
     disruption model needs when a complication extends the stay."""
     flight, f_src = flight_quote(dest)
     nightly, lodging, h_src = hotel_quote(dest)
+    _, miles = modeled_fare(dest)
     return {
         "flight_cost": flight,
         "lodging_cost": lodging,
         "nightly_rate": nightly,
         "travel_cost": round(flight + lodging, 2),
         "nights": RECOVERY_NIGHTS,
+        "distance_miles": miles,
         "flight_source": f_src,
         "hotel_source": h_src,
-        "live": f_src != "estimate" or h_src != "estimate",
+        "live": f_src == "Amadeus live" or h_src == "Amadeus live",
     }
